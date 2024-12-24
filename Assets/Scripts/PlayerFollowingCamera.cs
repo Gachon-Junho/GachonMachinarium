@@ -35,7 +35,7 @@ public class PlayerFollowingCamera : MonoBehaviour
         {
             camera.transform.position = Vector3.Lerp(transform.position,
                             new Vector3(player.transform.position.x, camera.transform.position.y, camera.transform.position.z),
-                            0.001f * moveSpeed);
+                            Time.deltaTime * moveSpeed);
         }
 
         if (Precision.AlmostEquals(player.transform.position.x, camera.transform.position.x))
