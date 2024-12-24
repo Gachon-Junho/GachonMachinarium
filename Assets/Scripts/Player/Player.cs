@@ -25,13 +25,17 @@ public class Player : MonoBehaviour
         
         if (Input.GetMouseButton(0))
         {
-            requestedPosition = Camera.main!.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main!.transform.position.z)).x;
+            var pos = Camera.main!.transform.position + mousePos;
+            requestedPosition = Camera.main!.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -10f)).x;
+            
+            // Fix Positioning
+            requestedPosition -= Camera.main!.transform.position.x * 2;
         }
         
         if (!requestedPosition.HasValue)
             return;
         
-        if (!Precision.AlmostEquals(requestedPosition.Value, transform.position.x))
+        if (!Precision.AlmostEquals(-requestedPosition.Value, transform.position.x))
         {
             // 뭔가 좌표가 이상해서 요청 위치의 부호를 바꿈
             var direction = Mathf.Sign(-requestedPosition.Value - transform.position.x);
@@ -56,7 +60,7 @@ public class Player : MonoBehaviour
         // if (!requestedPosition.HasValue)
         //     return;
         //
-        // if (!Precision.AlmostEquals(requestedPosition.Value, rigidbody.position.x))
+        // if (!Precision.AlmostEquals(-requestedPosition.Value, rigidbody.position.x))
         // {
         //     // 뭔가 좌표가 이상해서 요청 위치의 부호를 바꿈
         //     var direction = Mathf.Sign(-requestedPosition.Value - rigidbody.position.x);
