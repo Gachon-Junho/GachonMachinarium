@@ -28,14 +28,14 @@ public class PlayerFollowingCamera : MonoBehaviour
     {
         var vPos = camera.WorldToViewportPoint(player.transform.position).x;
 
-        if (vPos >= 0.75f || vPos <= 0.25f)
+        if (vPos >= 0.55f || vPos <= 0.45f)
             isRequiredCatchUp = true;
 
         if (Enabled && isRequiredCatchUp)
         {
             camera.transform.position = Vector3.Lerp(transform.position,
                             new Vector3(player.transform.position.x, camera.transform.position.y, camera.transform.position.z),
-                            0.001f);
+                            0.001f * moveSpeed);
         }
 
         if (Precision.AlmostEquals(player.transform.position.x, camera.transform.position.x))
