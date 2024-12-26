@@ -67,4 +67,59 @@ public static class MonoBehaviorExtensions
     {
         return camera.ScreenToWorldPoint(position + new Vector3(0, 0, camera.transform.position.z) - camera.transform.position * 2);
     }
+
+    public static void ScaleTo(this MonoBehaviour mono, Vector3 scale, double duration = 0, Easing easing = Easing.None)
+    {
+        mono.StartCoroutine(transformLoop(scale, Time.time, Time.time + duration));
+
+        IEnumerator transformLoop(Vector3 to, double startTime, double endTime)
+        {
+            var start = mono.transform.localScale;
+                
+            while (Time.time < endTime)
+            {
+                mono.transform.localScale = Interpolation.ValueAt(Time.time, start, to, startTime, endTime, new EasingFunction(easing));
+
+                yield return null;
+            }
+        }
+    }
+    
+    public static void MoveTo(this MonoBehaviour mono, Vector3 position, double duration = 0, Easing easing = Easing.None)
+    {
+        mono.StartCoroutine(transformLoop(position, Time.time, Time.time + duration));
+
+        IEnumerator transformLoop(Vector3 to, double startTime, double endTime)
+        {
+            var start = mono.transform.localScale;
+                
+            while (Time.time < endTime)
+            {
+                mono.transform.position = Interpolation.ValueAt(Time.time, start, to, startTime, endTime, new EasingFunction(easing));
+
+                yield return null;
+            }
+        }
+    }
+    
+    public static void RectMoveTo(this MonoBehaviour mono, Vector3 position, double duration = 0, Easing easing = Easing.None)
+    {
+        var transform = (mono as IHasRectTransform)?.RectTransform;
+
+        if (transform == null)
+            return;
+        
+        mono.StartCoroutine(transformLoop(position, Time.time, Time.time + duration));
+
+        IEnumerator transformLoop(Vector3 to, double startTime, double endTime)
+        {
+            var start = transform.anchoredPosition;
+                
+            while (Time.time < endTime)
+            {
+                transform.anchoredPosition = Interpolation.ValueAt(Time.time, (Vector3)start, to, startTime, endTime, new EasingFunction(easing));
+                yield return null;
+            }
+        }
+    }
 }
