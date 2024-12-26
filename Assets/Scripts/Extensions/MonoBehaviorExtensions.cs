@@ -62,4 +62,9 @@ public static class MonoBehaviorExtensions
             yield return null;
         }
     }
+
+    public static Vector3 DynamicScreenToWorldPoint(this Camera camera, Vector3 position)
+    {
+        return camera.ScreenToWorldPoint(position + new Vector3(0, 0, camera.transform.position.z) - camera.transform.position * 2);
+    }
 }
