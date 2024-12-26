@@ -35,8 +35,6 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         
     }
-    
-    
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -48,13 +46,8 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         if (draggingPuzzle == null)
             return;
 
-        initialPosition = Camera.main!.ScreenToWorldPoint(Input.mousePosition + 
-                                                          new Vector3(0, 0, Camera.main!.transform.position.z) - 
-                                                          Camera.main!.transform.position * 2);
-        
-        draggingPuzzle.transform.position = Camera.main!.ScreenToWorldPoint(Input.mousePosition + 
-                                                                             new Vector3(0, 0, Camera.main!.transform.position.z) - 
-                                                                             Camera.main!.transform.position * 2);
+        initialPosition = Camera.main!.DynamicScreenToWorldPoint(Input.mousePosition);
+        draggingPuzzle.transform.position = Camera.main!.DynamicScreenToWorldPoint(Input.mousePosition);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -79,9 +72,7 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         if (dragStarted && draggingPuzzle == null)
         {
             draggingPuzzle = Instantiate(puzzlePiece).GetComponent<PuzzlePiece>();
-            draggingPuzzle.transform.position = Camera.main!.ScreenToWorldPoint(Input.mousePosition + 
-                new Vector3(0, 0, Camera.main!.transform.position.z) - 
-                Camera.main!.transform.position * 2);
+            draggingPuzzle.transform.position = Camera.main!.DynamicScreenToWorldPoint(Input.mousePosition);
         }
     }
 }
