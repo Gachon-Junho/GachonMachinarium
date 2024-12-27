@@ -1,78 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class Item : MonoBehaviour
 {
-    [SerializeField] 
-    private RectTransform rect;
+    public ItemInfo Info;
     
-    [SerializeField] 
-    private Sprite itemIcon;
+    private bool dragging;
 
-    [SerializeField] 
-    private Image image;
-
-    [SerializeField] 
-    private GameObject puzzlePiece;
-
-    private bool dragStarted;
-
-    private Vector3 initialPosition;
-
-    private PuzzlePiece draggingPuzzle;
-    
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        initialPosition = rect.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool OnItemDropped()
     {
+        // TODO: 현재 마우스 위치에서 시작한 레이에 스냅포인트 존재 여부 확인
         
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        dragStarted = true;
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        if (draggingPuzzle == null)
-            return;
-
-        initialPosition = Camera.main!.DynamicScreenToWorldPoint(Input.mousePosition);
-        draggingPuzzle.transform.position = Camera.main!.DynamicScreenToWorldPoint(Input.mousePosition);
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        Debug.Log($"{name} drag stopped");
-
-        dragStarted = false;
-        draggingPuzzle = null;
-
-        // TODO: 지정된 위치에 퍼즐이 배치되었자면 인벤토리 아이템 삭제, 그렇지 않다면 퍼즐 삭제 (macOS 애니메이션 참조)
-    }
-    
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        // TODO: 호버시 하이하이트 효과 (ex: 알파 조절)
-    }
-    
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        // TODO: 이때부터는 UI영역을 벗어난 것으로 판단하고 인스턴스화
-
-        if (dragStarted && draggingPuzzle == null)
-        {
-            draggingPuzzle = Instantiate(puzzlePiece).GetComponent<PuzzlePiece>();
-            draggingPuzzle.transform.position = Camera.main!.DynamicScreenToWorldPoint(Input.mousePosition);
-        }
+        return false;
     }
 }
