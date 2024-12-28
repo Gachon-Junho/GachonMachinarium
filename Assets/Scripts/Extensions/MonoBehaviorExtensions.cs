@@ -105,7 +105,7 @@ public static class MonoBehaviorExtensions
 
         IEnumerator transformLoop(Vector3 to, double startTime, double endTime)
         {
-            var start = mono.transform.localScale;
+            var start = mono.transform.position;
                 
             while (Time.time < endTime)
             {
