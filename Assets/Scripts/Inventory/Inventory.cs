@@ -16,6 +16,11 @@ public class Inventory : Singleton<Inventory>
     [SerializeField] 
     private int maxCapacity = 9;
 
+    private void Start()
+    {
+        items = content.GetComponentsInChildren<ItemView>().ToList();
+    }
+
     public void Add(Item item)
     {
         if (items.Count >= maxCapacity)
