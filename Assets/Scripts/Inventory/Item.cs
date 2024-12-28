@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -6,6 +7,7 @@ public class Item : MonoBehaviour
     public ItemInfo Info;
     
     private bool dragging;
+    private RaycastHit hit;
 
     private void Update()
     {
@@ -13,8 +15,23 @@ public class Item : MonoBehaviour
 
     public bool OnItemDropped()
     {
-        // TODO: 현재 마우스 위치에서 시작한 레이에 스냅포인트 존재 여부 확인
+        var ray = Camera.main!.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, float.MaxValue))
+        {
+            if (!hit.collider.CompareTag("SnapPoint"))
+                return false;
+            
+            this.MoveTo(hit.collider.transform.position, 1f, Easing.OutQuint);
+
+            return true;
+        }
         
         return false;
+    }
+
+    private IEnumerator snap()
+    {
+        yield break;
     }
 }

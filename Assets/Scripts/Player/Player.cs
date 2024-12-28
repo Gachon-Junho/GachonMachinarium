@@ -21,17 +21,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // var mousePos = Input.mousePosition;
-        //
-        // if (Input.GetMouseButton(0))
-        // {
-        //     var pos = Camera.main!.transform.position + mousePos;
-        //     requestedPosition = Camera.main!.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -10f)).x;
-        //     
-        //     // Fix Positioning
-        //     requestedPosition -= Camera.main!.transform.position.x * 2;
-        // }
-        
         if (!requestedPosition.HasValue)
             return;
         

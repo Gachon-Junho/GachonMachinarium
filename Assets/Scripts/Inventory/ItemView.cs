@@ -16,23 +16,29 @@ public class ItemView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     [SerializeField] 
     private Image image;
 
-    [SerializeField] 
-    public GameObject Item;
+    [SerializeField]
+    public GameObject item;
 
     private bool dragStarted;
     private Vector3 initialPosition;
     private Item dragging;
+
+    private Inventory inventory;
     
     // Start is called before the first frame update
     void Start()
     {
         initialPosition = rect.position;
+
+        inventory ??= Inventory.Current;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Initialize(Inventory inventory, ItemInfo info)
     {
-        
+        this.inventory = inventory;
+        item = info.ItemPrefab;
+        ItemIcon = info.ItemIcon;
+        image.sprite = ItemIcon;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -51,14 +57,23 @@ public class ItemView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        var success = dragging?.OnItemDropped();
+        if (dragging == null)
+            return;
         
-        Debug.Log($"{name} drag stopped");
+        var success = dragging.OnItemDropped();
+
+        if (success)
+        {
+            inventory.Remove(this);
+        }
+        else
+        {
+            dragging.MoveTo(initialPosition, 0.5f, Easing.OutQuint);
+            Destroy(dragging.gameObject, 0.5f);
+        }
 
         dragStarted = false;
         dragging = null;
-
-        // TODO: 지정된 위치에 퍼즐이 배치되었자면 인벤토리 아이템 삭제, 그렇지 않다면 퍼즐 삭제 (macOS 애니메이션 참조)
     }
     
     public void OnPointerEnter(PointerEventData eventData)
@@ -70,7 +85,7 @@ public class ItemView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if (dragStarted && dragging == null)
         {
-            dragging = Instantiate(Item).GetComponent<Item>();
+            dragging = Instantiate(item).GetComponent<Item>();
             dragging.transform.position = Camera.main!.DynamicScreenToWorldPoint(Input.mousePosition);
         }
     }

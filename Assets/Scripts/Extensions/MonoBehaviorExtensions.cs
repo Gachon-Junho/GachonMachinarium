@@ -32,6 +32,20 @@ public static class MonoBehaviorExtensions
         return cor;
     }
 
+    public static Coroutine StartDelayedSchedule(this MonoBehaviour mono, Action action, float timeUntilStart)
+    {
+        var cor = mono.StartCoroutine(startDelayed());
+        
+        IEnumerator startDelayed()
+        {
+            yield return new WaitForSeconds(timeUntilStart);
+
+            action?.Invoke();
+        }
+
+        return cor;
+    }
+
     public static bool IsVisibleInCamera(this MonoBehaviour mono, Camera camera, float boundOffset = 0)
     {
         var cameraPos = camera.WorldToViewportPoint(mono.transform.position);
