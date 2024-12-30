@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    [SerializeField] 
+    private Collider collider;
+    
     public ItemInfo Info;
     
     private bool dragging;
     private RaycastHit hit;
 
-    private void Update()
+    private void Start()
     {
+        collider.enabled = false;
     }
 
     public bool OnItemDropped()
@@ -21,8 +25,14 @@ public class Item : MonoBehaviour
         {
             if (!hit.collider.CompareTag("SnapPoint"))
                 return false;
+
+            // 스냅포인트 지점에 원하지 않는 아이템은 필터함.
+            if (hit.collider.gameObject.GetComponent<ItemSnapPoint>().TargetType != Info.Type)
+                return false;
             
+            Destroy(hit.collider.gameObject);
             this.MoveTo(hit.collider.transform.position, 1f, Easing.OutQuint);
+            this.StartDelayedSchedule(() => collider.enabled = true, 1);
 
             return true;
         }

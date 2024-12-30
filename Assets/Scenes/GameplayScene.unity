@@ -1174,6 +1174,7 @@ GameObject:
   - component: {fileID: 1217466178}
   - component: {fileID: 1217466177}
   - component: {fileID: 1217466181}
+  - component: {fileID: 1217466182}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1279,8 +1280,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827180306925f4add8c2f8987a86673f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 0}
+  rigidbody: {fileID: 1217466182}
   moveSpeed: 4
+--- !u!54 &1217466182
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217466175}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!224 &1286556275 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 864485832249789816, guid: 091eea1a564254ac1aed8ffefe9435f5, type: 3}
@@ -1620,6 +1648,7 @@ GameObject:
   - component: {fileID: 1805534108}
   - component: {fileID: 1805534107}
   - component: {fileID: 1805534106}
+  - component: {fileID: 1805534110}
   m_Layer: 0
   m_Name: SnapPoint
   m_TagString: SnapPoint
@@ -1707,12 +1736,25 @@ Transform:
   m_GameObject: {fileID: 1805534105}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.5, y: -1.44, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 22.5, y: -1.46, z: 0}
+  m_LocalScale: {x: 5, y: 3, z: 5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1805534110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805534105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5022875b39224fc5a4b332fb65586f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetType: 0
 --- !u!224 &1890032460 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 864485832249789816, guid: 091eea1a564254ac1aed8ffefe9435f5, type: 3}

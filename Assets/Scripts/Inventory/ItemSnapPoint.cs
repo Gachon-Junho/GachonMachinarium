@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ItemSnapPoint : MonoBehaviour
 {
+    public ItemType TargetType;
+    
     // Start is called before the first frame update
     void Start()
     {

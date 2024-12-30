@@ -44,13 +44,6 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // var mousePos = Input.mousePosition;
-        //
-        // if (Input.GetMouseButton(0))
-        // {
-        //     requestedPosition = Camera.main!.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main!.transform.position.z)).x;
-        // }
-        //
         // if (!requestedPosition.HasValue)
         //     return;
         //
@@ -59,7 +52,7 @@ public class Player : MonoBehaviour
         //     // 뭔가 좌표가 이상해서 요청 위치의 부호를 바꿈
         //     var direction = Mathf.Sign(-requestedPosition.Value - rigidbody.position.x);
         //     
-        //     rigidbody.MovePosition(new Vector3(rigidbody.position.x + moveSpeed * direction * Time.fixedDeltaTime, rigidbody.position.y, rigidbody.position.z));
+        //     rigidbody.MovePosition(rigidbody.position + new Vector3(moveSpeed * direction * Time.fixedDeltaTime, 0, 0));
         // }
         // else
         // {
