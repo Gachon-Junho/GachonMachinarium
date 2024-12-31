@@ -12,6 +12,10 @@ public class Player : MonoBehaviour
     private float moveSpeed;
 
     private float? requestedPosition = null;
+    private float lastDirection;
+
+    private bool flipped;
+    private bool isRotating;
     
     void Start()
     {
@@ -29,7 +33,17 @@ public class Player : MonoBehaviour
             // 뭔가 좌표가 이상해서 요청 위치의 부호를 바꿈
             var direction = Mathf.Sign(-requestedPosition.Value - transform.position.x);
             
-            transform.Translate(new Vector3(moveSpeed * direction * Time.deltaTime, 0, 0));
+            if (!Precision.AlmostEquals(lastDirection, direction))
+            {
+                flipped = Precision.AlmostEquals(direction, -1);
+                
+                StopAllCoroutines();
+                this.RotateTo(new Vector3(0, Precision.AlmostEquals(direction, 1) ? 0 : -180, 0), 0.5f, Easing.OutQuint);
+            }
+            
+            transform.Translate(new Vector3(moveSpeed * direction * (flipped ? -1 : 1) * Time.deltaTime, 0, 0));
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            lastDirection = direction;
         }
         else
         {

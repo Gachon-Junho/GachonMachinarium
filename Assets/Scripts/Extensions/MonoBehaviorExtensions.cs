@@ -116,6 +116,64 @@ public static class MonoBehaviorExtensions
         }
     }
     
+    public static void MoveToX(this MonoBehaviour mono, float x, double duration = 0, Easing easing = Easing.None)
+    {
+        mono.StartCoroutine(transformLoop(x, Time.time, Time.time + duration));
+
+        IEnumerator transformLoop(float to, double startTime, double endTime)
+        {
+            var start = mono.transform.position.x;
+                
+            while (Time.time < endTime)
+            {
+                mono.transform.position = new Vector3(Interpolation.ValueAt(Time.time, start, to, startTime, endTime, new EasingFunction(easing)), 
+                    mono.transform.position.y,
+                    mono.transform.position.z);
+                
+                yield return null;
+            }
+        }
+    }
+    
+    public static void MoveToY(this MonoBehaviour mono, float y, double duration = 0, Easing easing = Easing.None)
+    {
+        mono.StartCoroutine(transformLoop(y, Time.time, Time.time + duration));
+
+        IEnumerator transformLoop(float to, double startTime, double endTime)
+        {
+            var start = mono.transform.position.y;
+                
+            while (Time.time < endTime)
+            {
+                mono.transform.position = new Vector3(mono.transform.position.x, 
+                    Interpolation.ValueAt(Time.time, start, to, startTime, endTime, new EasingFunction(easing)),
+                    mono.transform.position.z);
+                yield return null;
+            }
+        }
+    }
+    
+    public static void MoveToZ(this MonoBehaviour mono, float z, double duration = 0, Easing easing = Easing.None)
+    {
+        mono.StartCoroutine(transformLoop(z, Time.time, Time.time + duration));
+
+        IEnumerator transformLoop(float to, double startTime, double endTime)
+        {
+            var start = mono.transform.position.z;
+                
+            while (Time.time < endTime)
+            {
+                mono.transform.position = new Vector3(mono.transform.position.x, 
+                                                        mono.transform.position.y,
+                                                        Interpolation.ValueAt(Time.time, start, to, startTime, endTime, new EasingFunction(easing)));
+
+                yield return null;
+            }
+        }
+    }
+    
+    
+    
     public static void RectMoveTo(this MonoBehaviour mono, Vector3 position, double duration = 0, Easing easing = Easing.None)
     {
         var transform = (mono as IHasRectTransform)?.RectTransform;
@@ -132,6 +190,23 @@ public static class MonoBehaviorExtensions
             while (Time.time < endTime)
             {
                 transform.anchoredPosition = Interpolation.ValueAt(Time.time, (Vector3)start, to, startTime, endTime, new EasingFunction(easing));
+                yield return null;
+            }
+        }
+    }
+
+    public static void RotateTo(this MonoBehaviour mono, Vector3 rotation, double duration = 0, Easing easing = Easing.None)
+    {
+        mono.StartCoroutine(transformLoop(rotation, Time.time, Time.time + duration));
+
+        IEnumerator transformLoop(Vector3 to, double startTime, double endTime)
+        {
+            var start = mono.transform.rotation.eulerAngles;
+                
+            while (Time.time < endTime)
+            {
+                mono.transform.rotation = Quaternion.Euler(Interpolation.ValueAt(Time.time, start, to, startTime, endTime, new EasingFunction(easing)));
+                
                 yield return null;
             }
         }
