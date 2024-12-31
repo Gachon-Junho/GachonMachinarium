@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField] 
     private float moveSpeed;
 
+    [SerializeField] 
+    private GameObject sprite;
+
     private float? requestedPosition = null;
     private float lastDirection;
 
@@ -31,18 +34,9 @@ public class Player : MonoBehaviour
         if (!Precision.AlmostEquals(-requestedPosition.Value, transform.position.x))
         {
             // 뭔가 좌표가 이상해서 요청 위치의 부호를 바꿈
-            var direction = Mathf.Sign(-requestedPosition.Value - transform.position.x);
+            var direction = -requestedPosition.Value >= transform.position.x ? 1 : -1;
             
-            if (!Precision.AlmostEquals(lastDirection, direction))
-            {
-                flipped = Precision.AlmostEquals(direction, -1);
-                
-                StopAllCoroutines();
-                this.RotateTo(new Vector3(0, Precision.AlmostEquals(direction, 1) ? 0 : -180, 0), 0.5f, Easing.OutQuint);
-            }
-            
-            transform.Translate(new Vector3(moveSpeed * direction * (flipped ? -1 : 1) * Time.deltaTime, 0, 0));
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            transform.Translate(new Vector3(moveSpeed * direction * Time.deltaTime, 0, 0));
             lastDirection = direction;
         }
         else
@@ -54,6 +48,17 @@ public class Player : MonoBehaviour
     public void MoveTo(float x)
     {
         requestedPosition = x;
+        
+        var direction = -requestedPosition.Value >= transform.position.x ? 1 : -1;
+        
+        if (!Precision.AlmostEquals(lastDirection, direction))
+        {
+            flipped = Precision.AlmostEquals(direction, -1);
+
+            sprite.transform.RotateTo(new Vector3(0, flipped ? -180 : 0, 0), 0.5f, Easing.OutQuint);
+        }
+
+        lastDirection = direction;
     }
 
     private void FixedUpdate()

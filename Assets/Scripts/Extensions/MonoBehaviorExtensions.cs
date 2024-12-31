@@ -211,4 +211,23 @@ public static class MonoBehaviorExtensions
             }
         }
     }
+    
+    public static void RotateTo(this Transform transform, Vector3 rotation, double duration = 0, Easing easing = Easing.None)
+    {
+        var mono = ProxyMonoBehavior.Current;
+        
+        mono.StartCoroutine(transformLoop(rotation, Time.time, Time.time + duration));
+
+        IEnumerator transformLoop(Vector3 to, double startTime, double endTime)
+        {
+            var start = transform.rotation.eulerAngles;
+                
+            while (Time.time < endTime)
+            {
+                transform.rotation = Quaternion.Euler(Interpolation.ValueAt(Time.time, start, to, startTime, endTime, new EasingFunction(easing)));
+                
+                yield return null;
+            }
+        }
+    }
 }
