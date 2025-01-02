@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SnapPoint
   - Item
+  - ItemView
   layers:
   - Default
   - TransparentFX
