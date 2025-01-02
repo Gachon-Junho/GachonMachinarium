@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
 
     private bool flipped;
     private bool isRotating;
+
+    private Coroutine prevTransform;
     
     void Start()
     {
@@ -54,28 +56,14 @@ public class Player : MonoBehaviour
         if (!Precision.AlmostEquals(lastDirection, direction))
         {
             flipped = Precision.AlmostEquals(direction, -1);
-
-            sprite.transform.RotateTo(new Vector3(0, flipped ? -180 : 0, 0), 0.5f, Easing.OutQuint);
+            
+            // Shit Code
+            if (prevTransform != null)
+                ProxyMonoBehavior.Current.StopCoroutine(prevTransform);
+            
+            prevTransform = sprite.transform.RotateTo(new Vector3(0, flipped ? -180 : 0, 0), 0.5f, Easing.OutQuint);
         }
 
         lastDirection = direction;
-    }
-
-    private void FixedUpdate()
-    {
-        // if (!requestedPosition.HasValue)
-        //     return;
-        //
-        // if (!Precision.AlmostEquals(-requestedPosition.Value, rigidbody.position.x))
-        // {
-        //     // 뭔가 좌표가 이상해서 요청 위치의 부호를 바꿈
-        //     var direction = Mathf.Sign(-requestedPosition.Value - rigidbody.position.x);
-        //     
-        //     rigidbody.MovePosition(rigidbody.position + new Vector3(moveSpeed * direction * Time.fixedDeltaTime, 0, 0));
-        // }
-        // else
-        // {
-        //     requestedPosition = null;
-        // }
     }
 }

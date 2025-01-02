@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using UnityEngine;
+using Color = UnityEngine.Color;
 
 public static class Interpolation
 {
@@ -64,6 +65,18 @@ public static class Interpolation
     }
 
     public static Vector3 ValueAt(double time, Vector3 val1, Vector3 val2, double startTime, double endTime, in EasingFunction easing)
+    {
+        float current = (float)(time - startTime);
+        float duration = (float)(endTime - startTime);
+
+        if (duration == 0 || current == 0)
+            return val1;
+
+        float t = (float)easing.ApplyEasing(current / duration);
+        return val1 + t * (val2 - val1);
+    }
+    
+    public static Color ValueAt(double time, Color val1, Color val2, double startTime, double endTime, in EasingFunction easing)
     {
         float current = (float)(time - startTime);
         float duration = (float)(endTime - startTime);

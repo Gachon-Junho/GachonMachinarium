@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public static class MonoBehaviorExtensions
 {
+    private static ProxyMonoBehavior proxyMonoBehavior => ProxyMonoBehavior.Current;
+    
     public static void LoadSceneAsync(this MonoBehaviour mono, string sceneName)
     {
         mono.StartCoroutine(loadScene());
@@ -82,9 +84,9 @@ public static class MonoBehaviorExtensions
         return camera.ScreenToWorldPoint(position + new Vector3(0, 0, camera.transform.position.z) - camera.transform.position * 2);
     }
 
-    public static void ScaleTo(this MonoBehaviour mono, Vector3 scale, double duration = 0, Easing easing = Easing.None)
+    public static Coroutine ScaleTo(this MonoBehaviour mono, Vector3 scale, double duration = 0, Easing easing = Easing.None)
     {
-        mono.StartCoroutine(transformLoop(scale, Time.time, Time.time + duration));
+        var cor = mono.StartCoroutine(transformLoop(scale, Time.time, Time.time + duration));
 
         IEnumerator transformLoop(Vector3 to, double startTime, double endTime)
         {
@@ -97,11 +99,13 @@ public static class MonoBehaviorExtensions
                 yield return null;
             }
         }
+
+        return cor;
     }
     
-    public static void MoveTo(this MonoBehaviour mono, Vector3 position, double duration = 0, Easing easing = Easing.None)
+    public static Coroutine MoveTo(this MonoBehaviour mono, Vector3 position, double duration = 0, Easing easing = Easing.None)
     {
-        mono.StartCoroutine(transformLoop(position, Time.time, Time.time + duration));
+        var cor = mono.StartCoroutine(transformLoop(position, Time.time, Time.time + duration));
 
         IEnumerator transformLoop(Vector3 to, double startTime, double endTime)
         {
@@ -114,11 +118,13 @@ public static class MonoBehaviorExtensions
                 yield return null;
             }
         }
+
+        return cor;
     }
     
-    public static void MoveToX(this MonoBehaviour mono, float x, double duration = 0, Easing easing = Easing.None)
+    public static Coroutine MoveToX(this MonoBehaviour mono, float x, double duration = 0, Easing easing = Easing.None)
     {
-        mono.StartCoroutine(transformLoop(x, Time.time, Time.time + duration));
+        var cor = mono.StartCoroutine(transformLoop(x, Time.time, Time.time + duration));
 
         IEnumerator transformLoop(float to, double startTime, double endTime)
         {
@@ -133,11 +139,13 @@ public static class MonoBehaviorExtensions
                 yield return null;
             }
         }
+
+        return cor;
     }
     
-    public static void MoveToY(this MonoBehaviour mono, float y, double duration = 0, Easing easing = Easing.None)
+    public static Coroutine MoveToY(this MonoBehaviour mono, float y, double duration = 0, Easing easing = Easing.None)
     {
-        mono.StartCoroutine(transformLoop(y, Time.time, Time.time + duration));
+        var cor = mono.StartCoroutine(transformLoop(y, Time.time, Time.time + duration));
 
         IEnumerator transformLoop(float to, double startTime, double endTime)
         {
@@ -151,11 +159,13 @@ public static class MonoBehaviorExtensions
                 yield return null;
             }
         }
+
+        return cor;
     }
     
-    public static void MoveToZ(this MonoBehaviour mono, float z, double duration = 0, Easing easing = Easing.None)
+    public static Coroutine MoveToZ(this MonoBehaviour mono, float z, double duration = 0, Easing easing = Easing.None)
     {
-        mono.StartCoroutine(transformLoop(z, Time.time, Time.time + duration));
+        var cor = mono.StartCoroutine(transformLoop(z, Time.time, Time.time + duration));
 
         IEnumerator transformLoop(float to, double startTime, double endTime)
         {
@@ -170,18 +180,20 @@ public static class MonoBehaviorExtensions
                 yield return null;
             }
         }
+
+        return cor;
     }
     
     
     
-    public static void RectMoveTo(this MonoBehaviour mono, Vector3 position, double duration = 0, Easing easing = Easing.None)
+    public static Coroutine RectMoveTo(this MonoBehaviour mono, Vector3 position, double duration = 0, Easing easing = Easing.None)
     {
         var transform = (mono as IHasRectTransform)?.RectTransform;
 
         if (transform == null)
-            return;
+            return null;
         
-        mono.StartCoroutine(transformLoop(position, Time.time, Time.time + duration));
+        var cor = mono.StartCoroutine(transformLoop(position, Time.time, Time.time + duration));
 
         IEnumerator transformLoop(Vector3 to, double startTime, double endTime)
         {
@@ -193,11 +205,13 @@ public static class MonoBehaviorExtensions
                 yield return null;
             }
         }
+
+        return cor;
     }
 
-    public static void RotateTo(this MonoBehaviour mono, Vector3 rotation, double duration = 0, Easing easing = Easing.None)
+    public static Coroutine RotateTo(this MonoBehaviour mono, Vector3 rotation, double duration = 0, Easing easing = Easing.None)
     {
-        mono.StartCoroutine(transformLoop(rotation, Time.time, Time.time + duration));
+        var cor = mono.StartCoroutine(transformLoop(rotation, Time.time, Time.time + duration));
 
         IEnumerator transformLoop(Vector3 to, double startTime, double endTime)
         {
@@ -210,14 +224,14 @@ public static class MonoBehaviorExtensions
                 yield return null;
             }
         }
+
+        return cor;
     }
     
-    public static void RotateTo(this Transform transform, Vector3 rotation, double duration = 0, Easing easing = Easing.None)
+    public static Coroutine RotateTo(this Transform transform, Vector3 rotation, double duration = 0, Easing easing = Easing.None)
     {
-        var mono = ProxyMonoBehavior.Current;
-        
-        mono.StartCoroutine(transformLoop(rotation, Time.time, Time.time + duration));
-
+        var cor = proxyMonoBehavior.StartCoroutine(transformLoop(rotation, Time.time, Time.time + duration));
+            
         IEnumerator transformLoop(Vector3 to, double startTime, double endTime)
         {
             var start = transform.rotation.eulerAngles;
@@ -229,5 +243,60 @@ public static class MonoBehaviorExtensions
                 yield return null;
             }
         }
+
+        return cor;
+    }
+
+    public static Coroutine FadeTo(this MonoBehaviour mono, float alpha, double duration = 0, Easing easing = Easing.None)
+    {
+        var color = (mono as IHasColor)?.Color;
+
+        if (color == null)
+            return null;
+        
+        var cor = mono.StartCoroutine(transformLoop(alpha, Time.time, Time.time + duration));
+
+        IEnumerator transformLoop(float to, double startTime, double endTime)
+        {
+            var start = color.Value.a;
+                
+            while (Time.time < endTime)
+            {
+                var hasColor = (mono as IHasColor)!;
+
+                hasColor.Color = new Color(color.Value.r,
+                    color.Value.g,
+                    color.Value.b,
+                    Interpolation.ValueAt(Time.time, start, to, startTime, endTime, new EasingFunction(easing)));
+
+                yield return null;
+            }
+        }
+
+        return cor;
+    }
+    
+    public static Coroutine ColorTo(this MonoBehaviour mono, Color color, double duration = 0, Easing easing = Easing.None)
+    {
+        var startCol = (mono as IHasColor)?.Color;
+
+        if (startCol == null)
+            return null;
+        
+        var cor = mono.StartCoroutine(transformLoop(color, Time.time, Time.time + duration));
+
+        IEnumerator transformLoop(Color to, double startTime, double endTime)
+        {
+            var start = startCol.Value;
+                
+            while (Time.time < endTime)
+            {
+                (mono as IHasColor)!.Color = Interpolation.ValueAt(Time.time, start, to, startTime, endTime, new EasingFunction(easing));
+
+                yield return null;
+            }
+        }
+
+        return cor;
     }
 }
