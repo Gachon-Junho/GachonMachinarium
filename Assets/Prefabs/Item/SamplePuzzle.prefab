@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8686899303150464419}
   - component: {fileID: 313058148916559490}
   - component: {fileID: 6356634408176828864}
-  - component: {fileID: 3853701944218288986}
+  - component: {fileID: 3853404484061524546}
   m_Layer: 0
   m_Name: SamplePuzzle
   m_TagString: Untagged
@@ -108,7 +108,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &3853701944218288986
+--- !u!114 &3853404484061524546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,8 +117,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4855315374988636246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e42dcdf93c4d4556b7204392e3e1969d, type: 3}
+  m_Script: {fileID: 11500000, guid: a79e9f207e9a4461acb16c003facf367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 6356634408176828864}
+  sprite: {fileID: 0}
   Info: {fileID: 11400000, guid: 0a07bca2cc45848f09a8737cb77cc4e9, type: 2}

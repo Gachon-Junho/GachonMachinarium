@@ -121,7 +121,7 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
         if (DraggingItem == null)
             return;
 
-        var success = DraggingItem.OnItemDropped();
+        bool success = DraggingItem.OnItemDropped();
 
         if (success)
         {
@@ -130,6 +130,8 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
         else
         {
             DraggingItem.MoveTo(initialPosition, 0.5f, Easing.OutQuint);
+            DraggingItem.ColorTo(Color.clear, 0.5f, Easing.OutQuint);
+            
             Destroy(DraggingItem.gameObject, 0.5f);
         }
 

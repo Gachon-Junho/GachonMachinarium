@@ -152,4 +152,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 5035672159834974295}
+  sprite: {fileID: 8381144565843773544}
   Info: {fileID: 11400000, guid: 9272b02bb0cb14761838ac2745f75d99, type: 2}
