@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,18 +6,18 @@ using UnityEngine.UI;
 
 public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] 
+    [SerializeField]
     private GameObject content;
 
-    [SerializeField] 
+    [SerializeField]
     private GameObject itemView;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private int maxCapacity = 9;
 
-    [SerializeField] 
+    [SerializeField]
     private ItemCombinationTable itemTable;
-    
+
     private List<ItemView> items = new List<ItemView>();
     private HorizontalLayoutGroup layout;
 
@@ -33,7 +32,7 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
             layout.enabled = value;
         }
     }
-    
+
     private void Start()
     {
         items = content.GetComponentsInChildren<ItemView>().ToList();
@@ -47,7 +46,7 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
 
         var newView = item.CreateItemView(content.transform);
         newView.Initialize(this, item);
-        
+
         items.Add(newView);
 
         return newView;
@@ -74,27 +73,27 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
             return false;
 
         var depth = to.transform.GetSiblingIndex();
-        
+
         Remove(from);
         Remove(to);
-        
+
         var merged = Add(combination.Result);
         merged.transform.SetSiblingIndex(depth);
-        
+
         return true;
     }
 
     public (bool mergeable, ItemView to) CheckMargeable(ItemView from)
     {
-        var to = items.FirstOrDefault(v => !ReferenceEquals(from, v) && v.IsHoverring);
+        var to = items.FirstOrDefault(v => !ReferenceEquals(from, v) && v.IsHovering);
 
         if (to == null)
             return (false, to);
-        
+
         // TODO: 조합표에서 찾아서 병합가능 여부 확인.
         var combination = itemTable.Table.FirstOrDefault(c => c.First == from.ItemInfo && c.Second == to.ItemInfo ||
                                                               c.First == to.ItemInfo && c.Second == from.ItemInfo);
-        
+
         return (combination != null, to);
     }
 
@@ -104,7 +103,7 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
 
         if (holding == null)
             return;
-        
+
         holding.DestroyItem();
     }
 

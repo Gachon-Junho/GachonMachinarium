@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
@@ -21,25 +18,24 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
     }
 
     public ItemInfo ItemInfo;
-    
-    public bool IsHoverring { get; private set; }
+
+    public bool IsHovering { get; private set; }
     public bool DragStarted { get; private set; }
     public Item DraggingItem { get; private set; }
-    
-    [SerializeField] 
+
+    [SerializeField]
     private RectTransform rect;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private Image image;
-    
+
     private Vector3 initialPosition;
     private Inventory inventory;
     private int depth;
 
     private (bool mergeable, ItemView to) mergeable = (false, null);
-    
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         initialPosition = rect.position;
         inventory ??= Inventory.Current;
@@ -59,7 +55,7 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
         DragStarted = true;
         inventory.AlignElements = false;
         depth = transform.GetSiblingIndex();
-        
+
         transform.SetAsFirstSibling();
         initialPosition = Camera.main!.DynamicScreenToWorldPoint(Input.mousePosition);
 
@@ -70,13 +66,13 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = eventData.position;
-        
+
         if (DraggingItem == null)
         {
             checkMergeable();
             return;
         }
-        
+
         StopAllCoroutines();
         this.ColorTo(Color.gray, 0.2f, Easing.Out);
 
@@ -87,10 +83,10 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
     private void checkMergeable()
     {
         var newMergeable = inventory.CheckMargeable(this);
-        
+
         if (mergeable == newMergeable)
             return;
-        
+
         if (newMergeable.mergeable || newMergeable.to == null)
         {
             StopAllCoroutines();
@@ -109,22 +105,22 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
     {
         DragStarted = false;
         inventory.AlignElements = true;
-        
+
         if (mergeable.mergeable)
             inventory.MergeItem(this, mergeable.to);
         else
             mergeable = (false, null);
-        
+
         transform.SetSiblingIndex(depth);
-        
+
         StopAllCoroutines();
         this.ColorTo(Color.white, 0.2f, Easing.Out);
 
-        
-        
+
+
         if (DraggingItem == null)
             return;
-        
+
         var success = DraggingItem.OnItemDropped();
 
         if (success)
@@ -136,19 +132,19 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
             DraggingItem.MoveTo(initialPosition, 0.5f, Easing.OutQuint);
             Destroy(DraggingItem.gameObject, 0.5f);
         }
-        
+
         DraggingItem = null;
     }
-    
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         // TODO: 호버시 하이하이트 효과 (ex: 알파 조절)
-        IsHoverring = true;
+        IsHovering = true;
     }
-    
+
     public void OnPointerExit(PointerEventData eventData)
     {
-        IsHoverring = false;
+        IsHovering = false;
     }
 
     public void CreateItem()
@@ -164,7 +160,7 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
     {
         if (DraggingItem == null)
             return;
-        
+
         Destroy(DraggingItem.gameObject);
         DraggingItem = null;
     }
@@ -174,11 +170,11 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
         while (true)
         {
             this.ColorTo(Color.red * 0.5f, 0.5f, Easing.Out);
-            
+
             yield return new WaitForSeconds(0.5f);
-    
+
             this.ColorTo(Color.gray, 0.5f, Easing.Out);
-    
+
             yield return new WaitForSeconds(0.5f);
             yield return null;
         }
