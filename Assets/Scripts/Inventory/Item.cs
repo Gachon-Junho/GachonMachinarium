@@ -39,9 +39,4 @@ public class Item : MonoBehaviour
         
         return false;
     }
-
-    private IEnumerator snap()
-    {
-        yield break;
-    }
 }

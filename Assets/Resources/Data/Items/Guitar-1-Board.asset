@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3903eb94e6de4bc18ff016b774d90d44, type: 3}
-  m_Name: SamplePuzzleItem
+  m_Name: Guitar-1-Board
   m_EditorClassIdentifier: 
-  Name: Puzzle1
-  Type: 1
-  ItemIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  ItemPrefab: {fileID: 4855315374988636246, guid: 6b8a90bf0bede41538192a5cd03893de, type: 3}
+  Name: Guitar Board
+  Type: 2
+  ItemIcon: {fileID: 21300000, guid: aecf9d5f57d4948d184c266ad90048db, type: 3}
+  ItemPrefab: {fileID: 0}
+  ItemViewPrefab: {fileID: 7856684562824104285, guid: 091eea1a564254ac1aed8ffefe9435f5, type: 3}

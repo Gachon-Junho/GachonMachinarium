@@ -11,13 +11,6 @@ public class PlayerControlReceptor : MonoBehaviour, IPointerDownHandler, IPointe
     
     private bool isControlling;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (!isControlling)

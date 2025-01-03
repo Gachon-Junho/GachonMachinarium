@@ -8,26 +8,29 @@ using UnityEngine.UI;
 
 public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public Sprite ItemIcon;
+    public Sprite ItemIcon
+    {
+        get => image.sprite;
+        set => image.sprite = value;
+    }
 
     public Color Color
     {
         get => image.color;
         set => image.color = value;
     }
+
+    public ItemInfo ItemInfo;
+    
+    public bool IsHoverring { get; private set; }
+    public bool DragStarted { get; private set; }
+    public Item DraggingItem { get; private set; }
     
     [SerializeField] 
     private RectTransform rect;
     
     [SerializeField] 
     private Image image;
-
-    [SerializeField]
-    public GameObject item;
-
-    public bool IsHoverring;
-    public bool DragStarted;
-    public Item DraggingItem;
     
     private Vector3 initialPosition;
     private Inventory inventory;
@@ -43,12 +46,13 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
         depth = transform.GetSiblingIndex();
     }
 
-    public void Initialize(Inventory inventory, ItemInfo info)
+    public void Initialize(Inventory inventory, ItemInfo info = null)
     {
         this.inventory = inventory;
-        item = info.ItemPrefab;
-        ItemIcon = info.ItemIcon;
-        image.sprite = ItemIcon;
+        ItemInfo ??= info;
+
+        name = info?.Name ?? @"ItemView";
+        ItemIcon = info?.ItemIcon;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -144,7 +148,7 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
     {
         if (DragStarted && DraggingItem == null)
         {
-            DraggingItem = Instantiate(item).GetComponent<Item>();
+            DraggingItem = Instantiate(ItemInfo.ItemPrefab).GetComponent<Item>();
             DraggingItem.transform.position = Camera.main!.DynamicScreenToWorldPoint(Input.mousePosition);
         }
     }
