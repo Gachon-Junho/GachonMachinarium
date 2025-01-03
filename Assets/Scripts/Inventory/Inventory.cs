@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExitHandler
 {
@@ -16,10 +17,24 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
     private int maxCapacity = 9;
     
     private List<ItemView> items = new List<ItemView>();
+    private HorizontalLayoutGroup layout;
+
+    public bool AlignElements
+    {
+        get => layout.enabled;
+        set
+        {
+            if (layout.enabled == value)
+                return;
+
+            layout.enabled = value;
+        }
+    }
     
     private void Start()
     {
         items = content.GetComponentsInChildren<ItemView>().ToList();
+        layout = content.GetComponent<HorizontalLayoutGroup>();
     }
 
     public void Add(Item item)
