@@ -11,9 +11,9 @@ public class ItemInfo : ScriptableObject, IEquatable<ItemInfo>
     public GameObject ItemPrefab;
     public GameObject ItemViewPrefab;
 
-    public ItemView CreateItemView()
+    public ItemView CreateItemView(Transform parent)
     {
-        var view = Instantiate(ItemViewPrefab).GetComponent<ItemView>();
+        var view = Instantiate(ItemViewPrefab, parent).GetComponent<ItemView>();
         view.name = Name;
         view.ItemIcon = ItemIcon;
         view.ItemInfo = this;

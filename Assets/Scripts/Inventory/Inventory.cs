@@ -15,6 +15,9 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
     
     [SerializeField] 
     private int maxCapacity = 9;
+
+    [SerializeField] 
+    private ItemCombinationTable itemTable;
     
     private List<ItemView> items = new List<ItemView>();
     private HorizontalLayoutGroup layout;
@@ -37,15 +40,17 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
         layout = content.GetComponent<HorizontalLayoutGroup>();
     }
 
-    public void Add(Item item)
+    public ItemView Add(ItemInfo item)
     {
         if (items.Count >= maxCapacity)
-            return;
+            return null;
 
-        var newView = Instantiate(itemView, content.transform).GetComponent<ItemView>();
+        var newView = item.CreateItemView(content.transform);
+        newView.Initialize(this, item);
         
-        newView.Initialize(this, item.Info);
         items.Add(newView);
+
+        return newView;
     }
 
     public void Remove(ItemView item)
@@ -62,6 +67,19 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
     public bool MergeItem(ItemView from, ItemView to)
     {
         // TODO: 아이템 병합 성공시 true, 실패시 false. 아이템 드래그는 여기서 처리하지 않음.
+        var combination = itemTable.Table.FirstOrDefault(c => c.First == from.ItemInfo && c.Second == to.ItemInfo ||
+                                            c.First == to.ItemInfo && c.Second == from.ItemInfo);
+
+        if (combination == null)
+            return false;
+
+        var depth = to.transform.GetSiblingIndex();
+        
+        Remove(from);
+        Remove(to);
+        
+        var merged = Add(combination.Result);
+        merged.transform.SetSiblingIndex(depth);
         
         return true;
     }
@@ -69,10 +87,15 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
     public (bool mergeable, ItemView to) CheckMargeable(ItemView from)
     {
         var to = items.FirstOrDefault(v => !ReferenceEquals(from, v) && v.IsHoverring);
+
+        if (to == null)
+            return (false, to);
         
         // TODO: 조합표에서 찾아서 병합가능 여부 확인.
+        var combination = itemTable.Table.FirstOrDefault(c => c.First == from.ItemInfo && c.Second == to.ItemInfo ||
+                                                              c.First == to.ItemInfo && c.Second == from.ItemInfo);
         
-        return (false, to);
+        return (combination != null, to);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

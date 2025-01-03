@@ -2598,6 +2598,7 @@ MonoBehaviour:
   content: {fileID: 147803850}
   itemView: {fileID: 7856684562824104285, guid: 091eea1a564254ac1aed8ffefe9435f5, type: 3}
   maxCapacity: 9
+  itemTable: {fileID: 11400000, guid: 55e46be2a18f24de9a5b8e4146ac2642, type: 2}
 --- !u!1 &2000648666
 GameObject:
   m_ObjectHideFlags: 0

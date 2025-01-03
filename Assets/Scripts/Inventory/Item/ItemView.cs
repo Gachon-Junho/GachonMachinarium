@@ -43,7 +43,6 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
     {
         initialPosition = rect.position;
         inventory ??= Inventory.Current;
-        depth = transform.GetSiblingIndex();
     }
 
     public void Initialize(Inventory inventory, ItemInfo info = null)
@@ -59,6 +58,8 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
     {
         DragStarted = true;
         inventory.AlignElements = false;
+        depth = transform.GetSiblingIndex();
+        
         transform.SetAsFirstSibling();
         initialPosition = Camera.main!.DynamicScreenToWorldPoint(Input.mousePosition);
 
@@ -107,13 +108,19 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
     public void OnEndDrag(PointerEventData eventData)
     {
         DragStarted = false;
-        mergeable = (false, null);
         inventory.AlignElements = true;
+        
+        if (mergeable.mergeable)
+            inventory.MergeItem(this, mergeable.to);
+        else
+            mergeable = (false, null);
         
         transform.SetSiblingIndex(depth);
         
         StopAllCoroutines();
         this.ColorTo(Color.white, 0.2f, Easing.Out);
+
+        
         
         if (DraggingItem == null)
             return;

@@ -15,5 +15,5 @@ MonoBehaviour:
   Name: Guitar Board
   Type: 2
   ItemIcon: {fileID: 21300000, guid: aecf9d5f57d4948d184c266ad90048db, type: 3}
-  ItemPrefab: {fileID: 0}
+  ItemPrefab: {fileID: 2726598301492785687, guid: 948722528fb544b0684812e84f81a75f, type: 3}
   ItemViewPrefab: {fileID: 7856684562824104285, guid: 091eea1a564254ac1aed8ffefe9435f5, type: 3}
