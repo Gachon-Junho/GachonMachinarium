@@ -10,6 +10,12 @@ public class Item : MonoBehaviour, IHasColor
         set => sprite.color = value;
     }
 
+    public bool IsTrigger
+    {
+        get => collider.isTrigger;
+        set => collider.isTrigger = value;
+    }
+
     [SerializeField]
     private Collider collider;
 
@@ -23,7 +29,6 @@ public class Item : MonoBehaviour, IHasColor
 
     private void Start()
     {
-        collider.enabled = false;
     }
 
     public bool OnItemDropped()
@@ -41,11 +46,19 @@ public class Item : MonoBehaviour, IHasColor
 
             Destroy(hit.collider.gameObject);
             this.MoveTo(hit.collider.transform.position, 1f, Easing.OutQuint);
-            this.StartDelayedSchedule(() => collider.enabled = true, 1);
+            this.StartDelayedSchedule(() => collider.isTrigger = false, 1);
 
             return true;
         }
 
         return false;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.CompareTag("Player"))
+            return;
+
+        var player = other.gameObject.GetComponent<Player>();
     }
 }

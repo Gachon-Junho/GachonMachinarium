@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,6 +14,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject sprite;
 
+    [SerializeField]
+    private Collider boundary;
+
     private float? requestedPosition;
     private float lastDirection;
 
@@ -18,6 +24,7 @@ public class Player : MonoBehaviour
     private bool isRotating;
 
     private Coroutine prevTransform;
+    private List<Item> inBoundary = new List<Item>();
 
     private void Update()
     {
@@ -56,5 +63,44 @@ public class Player : MonoBehaviour
         }
 
         lastDirection = direction;
+    }
+
+    public void OnItemClicked(Item item)
+    {
+        if (!inBoundary.Exists(i => ReferenceEquals(item, i)))
+            return;
+
+        // TODO: 인벤토리에 추가 후 삭제
+        var result = Inventory.Current.Add(item.Info);
+
+        if (result == null)
+            return;
+
+        item.MoveTo(transform.position, 0.12f, Easing.OutQuint);
+        item.FadeTo(0, 0.12f, Easing.OutQuint);
+        inBoundary.Remove(item);
+        Destroy(item.gameObject, 0.12f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.gameObject.CompareTag("Item"))
+            return;
+
+        var item = other.gameObject.GetComponentInParent<Item>();
+
+        if (!inBoundary.Exists(i => ReferenceEquals(item, i)))
+            inBoundary.Add(item);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.gameObject.CompareTag("Item"))
+            return;
+
+        var item = other.gameObject.GetComponentInParent<Item>();
+
+        if (inBoundary.Exists(i => ReferenceEquals(item, i)))
+            inBoundary.Remove(item);
     }
 }

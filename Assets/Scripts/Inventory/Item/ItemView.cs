@@ -131,7 +131,7 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
         {
             DraggingItem.MoveTo(initialPosition, 0.5f, Easing.OutQuint);
             DraggingItem.ColorTo(Color.clear, 0.5f, Easing.OutQuint);
-            
+
             Destroy(DraggingItem.gameObject, 0.5f);
         }
 
@@ -155,6 +155,7 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
         {
             DraggingItem = Instantiate(ItemInfo.ItemPrefab).GetComponent<Item>();
             DraggingItem.transform.position = Camera.main!.DynamicScreenToWorldPoint(Input.mousePosition);
+            DraggingItem.IsTrigger = true;
         }
     }
 
