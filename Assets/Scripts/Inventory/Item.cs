@@ -17,7 +17,7 @@ public class Item : MonoBehaviour, IHasColor
     }
 
     [SerializeField]
-    private Collider collider;
+    private new Collider collider;
 
     [SerializeField]
     private SpriteRenderer sprite;
@@ -26,10 +26,6 @@ public class Item : MonoBehaviour, IHasColor
 
     private bool dragging;
     private RaycastHit hit;
-
-    private void Start()
-    {
-    }
 
     public bool OnItemDropped()
     {
@@ -52,13 +48,5 @@ public class Item : MonoBehaviour, IHasColor
         }
 
         return false;
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.collider.CompareTag("Player"))
-            return;
-
-        var player = other.gameObject.GetComponent<Player>();
     }
 }

@@ -70,7 +70,6 @@ public class Player : MonoBehaviour
         if (!inBoundary.Exists(i => ReferenceEquals(item, i)))
             return;
 
-        // TODO: 인벤토리에 추가 후 삭제
         var result = Inventory.Current.Add(item.Info);
 
         if (result == null)

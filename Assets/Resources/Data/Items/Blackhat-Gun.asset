@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3903eb94e6de4bc18ff016b774d90d44, type: 3}
-  m_Name: Item-Rope
+  m_Name: Blackhat-Gun
   m_EditorClassIdentifier: 
-  Name: Item-Rope
-  Type: 0
-  ItemIcon: {fileID: 21300000, guid: 3ce2dc81b8acf47ac96e9ceaa53de72d, type: 3}
-  ItemPrefab: {fileID: 0}
+  Name: Blackhat_Item-Gun
+  Type: 1
+  ItemIcon: {fileID: 21300000, guid: 58be82c04670d4a26aed93569a676b64, type: 3}
+  ItemPrefab: {fileID: 2726598301492785687, guid: 21d2c371758384225be3bf6b8eae3605, type: 3}
   ItemViewPrefab: {fileID: 7856684562824104285, guid: 091eea1a564254ac1aed8ffefe9435f5, type: 3}

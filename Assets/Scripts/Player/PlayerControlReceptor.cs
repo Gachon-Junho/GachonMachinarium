@@ -36,17 +36,6 @@ public class PlayerControlReceptor : MonoBehaviour, IPointerDownHandler, IPointe
             return;
         }
 
-        // if (Physics.Raycast(ray, out hit, float.MaxValue))
-        // {
-        //     if (hit.collider.CompareTag("Player"))
-        //         return;
-        //
-        //     if (hit.collider.CompareTag("Item"))
-        //     {
-        //         player.OnItemClicked(hit.collider.GetComponentInParent<Item>());
-        //     }
-        // }
-
         isControlling = true;
     }
 
