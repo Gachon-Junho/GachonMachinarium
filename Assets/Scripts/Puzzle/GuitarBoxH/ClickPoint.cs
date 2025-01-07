@@ -2,34 +2,18 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ClickPoint : MonoBehaviour, IHasColor
+public class ClickPoint : AdjustableColor
 {
-    public Color Color
+    public event Action<ClickPoint, Collider2D> CollisionEnter;
+    public event Action<ClickPoint, Collider2D> CollisionExit;
+
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        get => image.color;
-        set => image.color = value;
-    }
-
-    [SerializeField] private Image image;
-
-    public event Action<ClickPoint, Collision> CollisionEnter;
-    public event Action<ClickPoint, Collision> CollisionExit;
-
-    protected virtual void OnCollisionEnter(Collision other)
-    {
-        // 같은 클릭포인트의 충돌은 무시
-        if (other.gameObject.GetComponent<ClickPoint>() != null)
-            return;
-
         CollisionEnter?.Invoke(this, other);
     }
 
-    protected virtual void OnCollisionExit(Collision other)
+    protected virtual void OnTriggerExit2D(Collider2D other)
     {
-        // 같은 클릭포인트의 충돌은 무시
-        if (other.gameObject.GetComponent<ClickPoint>() != null)
-            return;
-
         CollisionExit?.Invoke(this, other);
     }
 }

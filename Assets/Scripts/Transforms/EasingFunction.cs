@@ -2,7 +2,7 @@ using System;
 
 public class EasingFunction
 {
-    private const double elastic_const = 2 * Math.PI / .3;
+        private const double elastic_const = 2 * Math.PI / .3;
         private const double elastic_const2 = .3 / 4;
 
         private const double back_const = 1.70158;

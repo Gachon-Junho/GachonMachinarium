@@ -25,7 +25,6 @@ public class PlayerControlReceptor : MonoBehaviour, IPointerDownHandler, IPointe
     public void OnPointerDown(PointerEventData eventData)
     {
         var ray = Camera.main!.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
         var hits = Physics.RaycastAll(ray);
         var item = hits.FirstOrDefault(h => h.collider.CompareTag("Item"));

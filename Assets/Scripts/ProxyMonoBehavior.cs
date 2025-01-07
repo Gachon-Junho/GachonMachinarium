@@ -3,5 +3,4 @@ using UnityEngine;
 
 public class ProxyMonoBehavior : Singleton<ProxyMonoBehavior>
 {
-    
 }

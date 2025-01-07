@@ -1,32 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerFollowingCamera : MonoBehaviour
 {
-    [SerializeField] 
-    private Camera camera;
-    
-    [SerializeField] 
+    [SerializeField]
+    private new Camera camera;
+
+    [SerializeField]
     private Player player;
 
-    [SerializeField] 
+    [SerializeField]
     private float moveSpeed;
 
     public bool Enabled = true;
 
     private bool isRequiredCatchUp;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        var vPos = camera.WorldToViewportPoint(player.transform.position).x;
+        float vPos = camera.WorldToViewportPoint(player.transform.position).x;
 
         if (vPos >= 0.55f || vPos <= 0.45f)
             isRequiredCatchUp = true;

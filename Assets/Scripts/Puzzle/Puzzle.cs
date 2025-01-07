@@ -12,6 +12,7 @@ public abstract class Puzzle : MonoBehaviour
     public void Start()
     {
         Initialize();
+        StartPlay();
     }
 
     public virtual void StartPlay()
@@ -21,13 +22,6 @@ public abstract class Puzzle : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        bool success = CheckCondition();
-
-        if (success && State != PuzzlePlayingState.Completed)
-        {
-            State = PuzzlePlayingState.Completed;
-            OnCompleted();
-        }
     }
 
     /// <summary>
@@ -35,7 +29,10 @@ public abstract class Puzzle : MonoBehaviour
     /// </summary>
     protected virtual void CommitChange()
     {
-        CheckCondition();
+        bool success = CheckCondition();
+
+        if (success && State != PuzzlePlayingState.Completed)
+            UpdateState(PuzzlePlayingState.Completed);
     }
 
     /// <summary>
@@ -94,6 +91,7 @@ public abstract class Puzzle : MonoBehaviour
     public virtual void Show()
     {
         gameObject.SetActive(true);
+        Initialize();
     }
 
     public virtual void Hide()
