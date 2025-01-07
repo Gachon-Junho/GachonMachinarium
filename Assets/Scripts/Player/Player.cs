@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -42,6 +40,7 @@ public class Player : MonoBehaviour
         else
         {
             requestedPosition = null;
+            OnMovedToDestination();
         }
     }
 
@@ -79,6 +78,11 @@ public class Player : MonoBehaviour
         item.FadeTo(0, 0.12f, Easing.OutQuint);
         inBoundary.Remove(item);
         Destroy(item.gameObject, 0.12f);
+    }
+
+    private void OnMovedToDestination()
+    {
+        // TODO: 그냥그냥
     }
 
     private void OnTriggerEnter(Collider other)

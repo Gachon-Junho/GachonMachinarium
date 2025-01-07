@@ -2594,7 +2594,7 @@ MonoBehaviour:
   panel: {fileID: 394429309}
   fadeInDuration: 1
   fadeOutDuration: 1
-  showFadeIn: 0
+  showFadeIn: 1
   showFadeOut: 1
   fadeInEasing: 1
   fadeOutEasing: 1
