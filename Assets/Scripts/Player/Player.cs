@@ -15,6 +15,9 @@ public class Player : Singleton<Player>
     [SerializeField]
     private Collider boundary;
 
+    [SerializeField]
+    private Animator animator;
+
     private float? requestedPosition;
     private float lastDirection;
 
@@ -24,6 +27,9 @@ public class Player : Singleton<Player>
     private Coroutine prevTransform;
     private List<Item> inBoundary = new List<Item>();
 
+    private static readonly int expanded = Animator.StringToHash("Expanded");
+    private static readonly int is_walking = Animator.StringToHash("IsWalking");
+
     private void Update()
     {
         if (!requestedPosition.HasValue)
@@ -31,6 +37,9 @@ public class Player : Singleton<Player>
 
         if (!Precision.AlmostEquals(-requestedPosition.Value, transform.position.x))
         {
+            if (!animator.GetBool(is_walking))
+                animator.SetBool(is_walking, true);
+
             // 뭔가 좌표가 이상해서 요청 위치의 부호를 바꿈
             int direction = -requestedPosition.Value >= transform.position.x ? 1 : -1;
 
@@ -83,6 +92,7 @@ public class Player : Singleton<Player>
     private void OnMovedToDestination()
     {
         // TODO: 그냥그냥
+        animator.SetBool(is_walking, false);
     }
 
     private void OnTriggerEnter(Collider other)
