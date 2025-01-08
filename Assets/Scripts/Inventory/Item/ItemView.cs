@@ -128,7 +128,7 @@ public class ItemView : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
         if (DraggingItem == null)
             return;
 
-        bool success = DraggingItem.OnItemDropped();
+        bool success = DraggingItem.CheckSnappable();
 
         if (success)
         {

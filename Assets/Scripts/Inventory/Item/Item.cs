@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Item : MonoBehaviour, IHasColor
 {
@@ -10,12 +11,13 @@ public class Item : MonoBehaviour, IHasColor
 
     public bool IsTrigger
     {
-        get => collider.isTrigger;
-        set => collider.isTrigger = value;
+        get => Collider.isTrigger;
+        set => Collider.isTrigger = value;
     }
 
+    [FormerlySerializedAs("collider")]
     [SerializeField]
-    private new Collider collider;
+    protected Collider Collider;
 
     [SerializeField]
     private SpriteRenderer sprite;
@@ -25,7 +27,7 @@ public class Item : MonoBehaviour, IHasColor
     private bool dragging;
     private RaycastHit hit;
 
-    public bool OnItemDropped()
+    public bool CheckSnappable()
     {
         var ray = Camera.main!.ScreenPointToRay(Input.mousePosition);
 
@@ -38,13 +40,18 @@ public class Item : MonoBehaviour, IHasColor
             if (hit.collider.gameObject.GetComponent<ItemSnapPoint>().TargetType != Info.Type)
                 return false;
 
-            Destroy(hit.collider.gameObject);
-            this.MoveTo(hit.collider.transform.position, 1f, Easing.OutQuint);
-            this.StartDelayedSchedule(() => collider.isTrigger = false, 1);
+            OnItemDropped(hit);
 
             return true;
         }
 
         return false;
+    }
+
+    protected virtual void OnItemDropped(RaycastHit hitted)
+    {
+        Destroy(hitted.collider.gameObject);
+        this.MoveTo(hitted.collider.transform.position, 1f, Easing.OutQuint);
+        this.StartDelayedSchedule(() => Collider.isTrigger = false, 1);
     }
 }
