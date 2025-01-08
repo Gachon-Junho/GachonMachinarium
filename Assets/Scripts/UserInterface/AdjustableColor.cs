@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class AdjustableColor : MonoBehaviour, IHasColor
 {
     public Color Color
     {
-        get => image.color;
-        set => image.color = value;
+        get => Image.color;
+        set => Image.color = value;
     }
 
-    // TODO: 노출시켜서 상속후 사용이 편리하게?
+    [FormerlySerializedAs("image")]
     [SerializeField]
-    private Image image;
+    public Image Image;
 }

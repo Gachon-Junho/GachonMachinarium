@@ -110,6 +110,7 @@ public class GuitarBoxHPuzzle : Puzzle, IPointerClickHandler
         });
         print("Complete!");
         // TODO: 성공시 아이템 지급?
+
     }
 
     public void OnPointerClick(PointerEventData eventData)

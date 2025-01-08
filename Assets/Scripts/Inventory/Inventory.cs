@@ -18,6 +18,9 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
     [SerializeField]
     private ItemCombinationTable itemTable;
 
+    [SerializeField]
+    private HidingInventoryBar hiding;
+
     private List<ItemView> items = new List<ItemView>();
     private HorizontalLayoutGroup layout;
 
@@ -41,6 +44,19 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
 
     public ItemView Add(ItemInfo item)
     {
+        if (item.IsStackable)
+        {
+            var to = items.FirstOrDefault(i => i.ItemInfo.Equals(item));
+
+            if (to != null)
+            {
+                to.Count++;
+                hiding.TriggerAlarm();
+
+                return to;
+            }
+        }
+
         if (items.Count >= maxCapacity)
             return null;
 
@@ -48,6 +64,7 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
         newView.Initialize(this, item);
 
         items.Add(newView);
+        hiding.TriggerAlarm();
 
         return newView;
     }
@@ -65,14 +82,13 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
 
     public bool MergeItem(ItemView from, ItemView to)
     {
-        // TODO: 아이템 병합 성공시 true, 실패시 false. 아이템 드래그는 여기서 처리하지 않음.
         var combination = itemTable.Table.FirstOrDefault(c => c.First == from.ItemInfo && c.Second == to.ItemInfo ||
                                             c.First == to.ItemInfo && c.Second == from.ItemInfo);
 
         if (combination == null)
             return false;
 
-        var depth = to.transform.GetSiblingIndex();
+        int depth = to.transform.GetSiblingIndex();
 
         Remove(from);
         Remove(to);
@@ -90,7 +106,6 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
         if (to == null)
             return (false, to);
 
-        // TODO: 조합표에서 찾아서 병합가능 여부 확인.
         var combination = itemTable.Table.FirstOrDefault(c => c.First == from.ItemInfo && c.Second == to.ItemInfo ||
                                                               c.First == to.ItemInfo && c.Second == from.ItemInfo);
 

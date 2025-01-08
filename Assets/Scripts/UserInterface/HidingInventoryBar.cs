@@ -11,6 +11,7 @@ public class HidingInventoryBar : MonoBehaviour, IPointerEnterHandler, IPointerE
     private RectTransform rect;
 
     private Coroutine hideRoutine;
+    private bool isPresenting;
 
     private void Start()
     {
@@ -19,6 +20,9 @@ public class HidingInventoryBar : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void TriggerAlarm()
     {
+        if (isPresenting)
+            return;
+
         StartCoroutine(alarm());
     }
 
@@ -36,6 +40,7 @@ public class HidingInventoryBar : MonoBehaviour, IPointerEnterHandler, IPointerE
     {
         StopAllCoroutines();
         this.RectMoveTo(Vector3.zero, 0.5f, Easing.OutQuint);
+        this.StartDelayedSchedule(() => isPresenting = true, 0.5f);
 
         yield return null;
     }
@@ -46,14 +51,15 @@ public class HidingInventoryBar : MonoBehaviour, IPointerEnterHandler, IPointerE
 
         // 95%정도 숨겨 호버링 공간을 남김
         this.RectMoveTo(new Vector3(0, rect.rect.height * 0.9f, 0), 0.5f, Easing.OutQuint);
+        this.StartDelayedSchedule(() => isPresenting = false, 0.5f);
     }
 
     private IEnumerator alarm()
     {
-        this.RectMoveTo(new Vector3(0, rect.rect.height * 0.6f, 0), 0.25f, Easing.OutQuint);
+        this.RectMoveTo(new Vector3(0, rect.rect.height * 0f, 0), 0.25f, Easing.OutSine);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
 
-        this.RectMoveTo(new Vector3(0, rect.rect.height * 0.9f, 0), 0.25f, Easing.OutQuint);
+        this.RectMoveTo(new Vector3(0, rect.rect.height * 0.9f, 0), 0.5f, Easing.OutBounce);
     }
 }

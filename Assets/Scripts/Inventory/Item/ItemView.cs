@@ -1,23 +1,31 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class ItemView : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Sprite ItemIcon
     {
-        get => image.sprite;
-        set => image.sprite = value;
-    }
-
-    public Color Color
-    {
-        get => image.color;
-        set => image.color = value;
+        get => Image.sprite;
+        set => Image.sprite = value;
     }
 
     public ItemInfo ItemInfo;
+
+    public int Count
+    {
+        get => count;
+        set
+        {
+            if (!ItemInfo.IsStackable)
+                return;
+
+            count = value;
+            ItemIcon = ItemInfo.StackInfo.FirstOrDefault(i => i.Count == value)?.Sprite ?? ItemIcon;
+        }
+    }
 
     public bool IsHovering { get; private set; }
     public bool DragStarted { get; private set; }
@@ -26,12 +34,10 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
     [SerializeField]
     private RectTransform rect;
 
-    [SerializeField]
-    private Image image;
-
     private Vector3 initialPosition;
     private Inventory inventory;
     private int depth;
+    private int count = 1;
 
     private (bool mergeable, ItemView to) mergeable = (false, null);
 
@@ -65,7 +71,8 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = eventData.position;
+        if (Count <= 1)
+            transform.position = eventData.position;
 
         if (DraggingItem == null)
         {
@@ -156,6 +163,7 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
             DraggingItem = Instantiate(ItemInfo.ItemPrefab).GetComponent<Item>();
             DraggingItem.transform.position = Camera.main!.DynamicScreenToWorldPoint(Input.mousePosition);
             DraggingItem.IsTrigger = true;
+            Count--;
         }
     }
 
@@ -166,6 +174,7 @@ public class ItemView : MonoBehaviour, IHasColor, IBeginDragHandler, IDragHandle
 
         Destroy(DraggingItem.gameObject);
         DraggingItem = null;
+        Count++;
     }
 
     private IEnumerator alarmNotMergeable()

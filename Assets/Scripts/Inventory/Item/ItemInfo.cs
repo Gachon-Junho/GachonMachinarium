@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Item Info", menuName = "Item/Item Info")]
@@ -10,6 +11,9 @@ public class ItemInfo : ScriptableObject, IEquatable<ItemInfo>
     public Sprite ItemIcon;
     public GameObject ItemPrefab;
     public GameObject ItemViewPrefab;
+
+    public bool IsStackable;
+    public ItemStackInfo[] StackInfo;
 
     public ItemView CreateItemView(Transform parent)
     {
@@ -34,11 +38,19 @@ public class ItemInfo : ScriptableObject, IEquatable<ItemInfo>
     {
         if (i == null)
             return false;
-        
+
         return i.Name == Name &&
                i.Type == Type &&
                i.ItemIcon == ItemIcon &&
-               i.ItemPrefab == ItemPrefab;
+               i.ItemPrefab == ItemPrefab &&
+               i.IsStackable == IsStackable;
+    }
+
+    [Serializable]
+    public class ItemStackInfo
+    {
+        public int Count;
+        public Sprite Sprite;
     }
 }
 

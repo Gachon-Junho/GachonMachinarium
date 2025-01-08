@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3ce2dc81b8acf47ac96e9ceaa53de72d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ceecb903452a488594a7b1fa224ddab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,7 +104,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.25, y: 1.55, z: 0.2}
+  m_Size: {x: 1.2, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2726598301492785687
 GameObject:
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 8197851926179788183}
   - component: {fileID: 2225514883646434751}
   m_Layer: 0
-  m_Name: Rope
+  m_Name: Forest-Stone
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,7 @@ Transform:
   m_GameObject: {fileID: 2726598301492785687}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -153,4 +153,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 5035672159834974295}
   sprite: {fileID: 8381144565843773544}
-  Info: {fileID: 11400000, guid: 88f24260c86e54da79d1444c60bd9cb8, type: 2}
+  Info: {fileID: 11400000, guid: 88793627d4363471f83f9a97eb7e4cce, type: 2}
