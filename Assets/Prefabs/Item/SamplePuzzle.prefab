@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 313058148916559490}
   - component: {fileID: 6356634408176828864}
   - component: {fileID: 3853404484061524546}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SamplePuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,6 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79e9f207e9a4461acb16c003facf367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 6356634408176828864}
+  Collider: {fileID: 6356634408176828864}
   sprite: {fileID: 0}
   Info: {fileID: 11400000, guid: 0a07bca2cc45848f09a8737cb77cc4e9, type: 2}

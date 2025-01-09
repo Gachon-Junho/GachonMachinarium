@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7692439583113535104}
   - component: {fileID: 6948969730442565444}
   - component: {fileID: 5442393609817049347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SamplePlatformItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79e9f207e9a4461acb16c003facf367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 6948969730442565444}
+  Collider: {fileID: 6948969730442565444}
   sprite: {fileID: 0}
   Info: {fileID: 11400000, guid: 49fe07f48aea142daa0351251922459e, type: 2}

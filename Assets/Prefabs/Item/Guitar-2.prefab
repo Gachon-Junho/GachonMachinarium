@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1580845653387507562}
   - component: {fileID: 8381144565843773544}
   - component: {fileID: 5035672159834974295}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8197851926179788183}
   - component: {fileID: 2225514883646434751}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Guitar-2
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -151,6 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef460ce323e34397a858bfa16fb7d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 5035672159834974295}
+  Collider: {fileID: 5035672159834974295}
   sprite: {fileID: 8381144565843773544}
   Info: {fileID: 11400000, guid: 1cd78f68f96b24ab19d4f337f8cb7b53, type: 2}
