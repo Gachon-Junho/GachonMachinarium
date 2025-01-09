@@ -19,7 +19,7 @@ public class Player : Singleton<Player>
     private Animator animator;
 
     private float? requestedPosition;
-    private float lastDirection;
+    private int lastDirection;
 
     private bool flipped;
     private bool isRotating;
@@ -44,7 +44,6 @@ public class Player : Singleton<Player>
             int direction = -requestedPosition.Value >= transform.position.x ? 1 : -1;
 
             transform.Translate(new Vector3(moveSpeed * direction * Time.deltaTime, 0, 0));
-            lastDirection = direction;
         }
         else
         {
@@ -59,13 +58,13 @@ public class Player : Singleton<Player>
 
         int direction = -requestedPosition.Value >= transform.position.x ? 1 : -1;
 
-        if (!Precision.AlmostEquals(lastDirection, direction))
+        if (lastDirection != direction)
         {
-            flipped = Precision.AlmostEquals(direction, -1);
+            flipped = direction == -1;
 
             // Shit Code
             if (prevTransform != null)
-                ProxyMonoBehavior.Current.StopCoroutine(prevTransform);
+                ProxyMonoBehavior.Current.StopAllCoroutines();
 
             prevTransform = sprite.transform.RotateTo(new Vector3(0, flipped ? -180 : 0, 0), 0.5f, Easing.OutQuint);
         }

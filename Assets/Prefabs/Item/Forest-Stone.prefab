@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1580845653387507562}
   - component: {fileID: 8381144565843773544}
   - component: {fileID: 5035672159834974295}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -115,8 +115,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8197851926179788183}
-  - component: {fileID: 2225514883646434751}
-  m_Layer: 0
+  - component: {fileID: 6459546052068721345}
+  - component: {fileID: 2037688198832795474}
+  m_Layer: 7
   m_Name: Forest-Stone
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -139,7 +140,7 @@ Transform:
   - {fileID: 1580845653387507562}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2225514883646434751
+--- !u!114 &6459546052068721345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,9 +149,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 2726598301492785687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bef460ce323e34397a858bfa16fb7d07, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cee0d13d3484706b9b3f42f9cf8b404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 5035672159834974295}
+  Collider: {fileID: 5035672159834974295}
   sprite: {fileID: 8381144565843773544}
   Info: {fileID: 11400000, guid: 88793627d4363471f83f9a97eb7e4cce, type: 2}
+  rigidbody: {fileID: 2037688198832795474}
+--- !u!54 &2037688198832795474
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2726598301492785687}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -19,10 +19,14 @@ public class ItemView : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
         get => count;
         set
         {
+            count = value;
+
+            if (value == 0)
+                inventory.Remove(this);
+
             if (!ItemInfo.IsStackable)
                 return;
 
-            count = value;
             ItemIcon = ItemInfo.StackInfo.FirstOrDefault(i => i.Count == value)?.Sprite ?? ItemIcon;
         }
     }
@@ -71,8 +75,7 @@ public class ItemView : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (Count <= 1)
-            transform.position = eventData.position;
+        transform.position = eventData.position;
 
         if (DraggingItem == null)
         {
@@ -123,8 +126,6 @@ public class ItemView : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
         StopAllCoroutines();
         this.ColorTo(Color.white, 0.2f, Easing.Out);
 
-
-
         if (DraggingItem == null)
             return;
 
@@ -132,7 +133,7 @@ public class ItemView : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
 
         if (success)
         {
-            inventory.Remove(this);
+            Count--;
         }
         else
         {
@@ -163,7 +164,6 @@ public class ItemView : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
             DraggingItem = Instantiate(ItemInfo.ItemPrefab).GetComponent<Item>();
             DraggingItem.transform.position = Camera.main!.DynamicScreenToWorldPoint(Input.mousePosition);
             DraggingItem.IsTrigger = true;
-            Count--;
         }
     }
 
@@ -174,7 +174,6 @@ public class ItemView : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
 
         Destroy(DraggingItem.gameObject);
         DraggingItem = null;
-        Count++;
     }
 
     private IEnumerator alarmNotMergeable()

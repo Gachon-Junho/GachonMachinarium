@@ -5,10 +5,15 @@ public class ForestStoneItem : Item
     [SerializeField]
     private new Rigidbody rigidbody;
 
-    protected override void OnItemDropped(RaycastHit hitted)
+    [SerializeField] private float velocity = 5;
+
+    protected override void OnItemDropped(RaycastHit snapPoint)
     {
         Collider.isTrigger = false;
-        rigidbody.
-        GetComponent<Rigidbody>().AddForce(hitted.transform.position - transform.position);
+        transform.position = Player.Current.transform.position + new Vector3(0, 0, -1);
+        rigidbody.isKinematic = false;
+        var direction = (snapPoint.transform.position - Player.Current.transform.position).normalized;
+        GetComponent<Rigidbody>().AddForce(direction * velocity + new Vector3(0, 4.5f, 2), ForceMode.Impulse);
+        snapPoint.collider.isTrigger = true;
     }
 }

@@ -37,7 +37,7 @@ public class Item : MonoBehaviour, IHasColor
                 return false;
 
             // 스냅포인트 지점에 원하지 않는 아이템은 필터함.
-            if (hit.collider.gameObject.GetComponent<ItemSnapPoint>().TargetType != Info.Type)
+            if (hit.collider.gameObject.GetComponent<ItemSnapPoint>().ItemName != Info.Name)
                 return false;
 
             OnItemDropped(hit);
@@ -48,10 +48,10 @@ public class Item : MonoBehaviour, IHasColor
         return false;
     }
 
-    protected virtual void OnItemDropped(RaycastHit hitted)
+    protected virtual void OnItemDropped(RaycastHit snapPoint)
     {
-        Destroy(hitted.collider.gameObject);
-        this.MoveTo(hitted.collider.transform.position, 1f, Easing.OutQuint);
+        Destroy(snapPoint.collider.gameObject);
+        this.MoveTo(snapPoint.collider.transform.position, 1f, Easing.OutQuint);
         this.StartDelayedSchedule(() => Collider.isTrigger = false, 1);
     }
 }
