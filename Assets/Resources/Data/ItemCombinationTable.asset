@@ -22,3 +22,9 @@ MonoBehaviour:
   - First: {fileID: 11400000, guid: 0a07bca2cc45848f09a8737cb77cc4e9, type: 2}
     Second: {fileID: 11400000, guid: 0a07bca2cc45848f09a8737cb77cc4e9, type: 2}
     Result: {fileID: 11400000, guid: 49fe07f48aea142daa0351251922459e, type: 2}
+  - First: {fileID: 11400000, guid: 0741f1dd56b091c46a69737689f238b1, type: 2}
+    Second: {fileID: 11400000, guid: 88793627d4363471f83f9a97eb7e4cce, type: 2}
+    Result: {fileID: 11400000, guid: 4aa4658c9ea3a6b499ddbfd9fedc74c3, type: 2}
+  - First: {fileID: 11400000, guid: cdf076af790d3be48899baf89d2eeafd, type: 2}
+    Second: {fileID: 11400000, guid: 4cb77a6f80132d64bb3af2b41c7dec6d, type: 2}
+    Result: {fileID: 11400000, guid: 933da608b9d4cc84198990661c1f833a, type: 2}
