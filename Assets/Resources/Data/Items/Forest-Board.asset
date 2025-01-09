@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3903eb94e6de4bc18ff016b774d90d44, type: 3}
+  m_Name: Forest-Board
+  m_EditorClassIdentifier: 
+  Name: Forest Board 1
+  Type: 2
+  ItemIcon: {fileID: 21300000, guid: 7f54a1477b99a4303a77e5491a53a706, type: 3}
+  ItemPrefab: {fileID: 2726598301492785687, guid: c051ff886b9de4c6db263bf7ad6a2568, type: 3}
+  ItemViewPrefab: {fileID: 7856684562824104285, guid: 091eea1a564254ac1aed8ffefe9435f5, type: 3}
+  IsStackable: 1
+  StackInfo:
+  - Count: 1
+    Sprite: {fileID: 21300000, guid: 7f54a1477b99a4303a77e5491a53a706, type: 3}
+  - Count: 2
+    Sprite: {fileID: 21300000, guid: 0d43d939abe7247a1bb718175aac199d, type: 3}
+  - Count: 3
+    Sprite: {fileID: 21300000, guid: 3c8c27ec0a25a4290b8a14721b8333d6, type: 3}

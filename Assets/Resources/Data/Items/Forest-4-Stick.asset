@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3903eb94e6de4bc18ff016b774d90d44, type: 3}
   m_Name: Forest-4-Stick
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Forest Stick
   Type: 2
-  ItemIcon: {fileID: 0}
-  ItemPrefab: {fileID: 0}
-  ItemViewPrefab: {fileID: 0}
+  ItemIcon: {fileID: 21300000, guid: 6ea023bd9abe0c348a1bba547c427bc6, type: 3}
+  ItemPrefab: {fileID: 2726598301492785687, guid: 4e8c064c36af9484cad37cc7dc1c3e50, type: 3}
+  ItemViewPrefab: {fileID: 7856684562824104285, guid: 091eea1a564254ac1aed8ffefe9435f5, type: 3}
   IsStackable: 0
   StackInfo: []

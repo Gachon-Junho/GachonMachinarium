@@ -18,6 +18,8 @@ public class Home : MonoBehaviour
 
             if (countUntilDrop == 0)
                 rigidbody.isKinematic = false;
+            else
+                return;
 
             return;
         }
