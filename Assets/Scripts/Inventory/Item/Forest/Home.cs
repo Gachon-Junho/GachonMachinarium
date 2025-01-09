@@ -14,9 +14,7 @@ public class Home : MonoBehaviour
     {
         if (other.gameObject.GetComponent<ForestStoneItem>() != null)
         {
-            countUntilDrop--;
-
-            if (countUntilDrop == 0)
+            if (--countUntilDrop <= 0)
                 rigidbody.isKinematic = false;
             else
                 return;
