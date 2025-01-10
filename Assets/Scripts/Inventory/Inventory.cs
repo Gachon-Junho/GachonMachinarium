@@ -90,8 +90,8 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
 
         int depth = to.transform.GetSiblingIndex();
 
-        Remove(from);
-        Remove(to);
+        from.Count--;
+        to.Count--;
 
         var merged = Add(combination.Result);
         merged.transform.SetSiblingIndex(depth);
@@ -99,7 +99,7 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
         return true;
     }
 
-    public (bool mergeable, ItemView to) CheckMargeable(ItemView from)
+    public (bool mergeable, ItemView to) CheckMergeable(ItemView from)
     {
         var to = items.FirstOrDefault(v => !ReferenceEquals(from, v) && v.IsHovering);
 

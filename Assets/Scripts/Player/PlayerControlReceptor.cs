@@ -35,6 +35,9 @@ public class PlayerControlReceptor : MonoBehaviour, IPointerDownHandler, IPointe
             return;
         }
 
+        if (hits.FirstOrDefault(h => h.collider.CompareTag("Interactionable")).collider != null)
+            return;
+
         isControlling = true;
     }
 

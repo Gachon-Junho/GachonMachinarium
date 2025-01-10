@@ -7,6 +7,7 @@ TagManager:
   - SnapPoint
   - Item
   - ItemView
+  - Interactionable
   layers:
   - Default
   - TransparentFX

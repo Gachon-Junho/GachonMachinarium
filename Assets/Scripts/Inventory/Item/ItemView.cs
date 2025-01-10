@@ -92,7 +92,7 @@ public class ItemView : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
 
     private void checkMergeable()
     {
-        var newMergeable = inventory.CheckMargeable(this);
+        var newMergeable = inventory.CheckMergeable(this);
 
         if (mergeable == newMergeable)
             return;
