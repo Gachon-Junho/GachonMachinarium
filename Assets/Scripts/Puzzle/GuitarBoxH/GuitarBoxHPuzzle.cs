@@ -96,6 +96,13 @@ public class GuitarBoxHPuzzle : Puzzle, IPointerClickHandler
         lights.ForEach(l => l.ColorTo(Color.black, 0.5f, Easing.OutQuint));
         print("Fail!");
 
+        this.StartDelayedSchedule(() =>
+        {
+            Initialize();
+            UpdateState(PuzzlePlayingState.Playing);
+
+        }, 1);
+
         // TODO: 실패시 초기회?
     }
 
@@ -108,7 +115,14 @@ public class GuitarBoxHPuzzle : Puzzle, IPointerClickHandler
             p.RotateTo(new Vector3(0, 0, Random.Range(-360f, 360f)), 0.7f, Easing.OutQuint);
             p.FadeTo(0, 0.7f, Easing.OutQuint);
         });
+
         print("Complete!");
+
+        this.StartDelayedSchedule(() =>
+        {
+            gameObject.SetActive(false);
+            PuzzlePanel.SetActive(false);
+        }, 1);
         // TODO: 성공시 아이템 지급?
 
     }

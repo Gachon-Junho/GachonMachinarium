@@ -2,6 +2,8 @@ using UnityEngine;
 
 public abstract class Puzzle : MonoBehaviour
 {
+    public GameObject PuzzlePanel;
+
     public PuzzlePlayingState State { get; private set; }
 
     /// <summary>
