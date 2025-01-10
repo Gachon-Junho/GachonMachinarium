@@ -1972,7 +1972,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1040022408
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1986,6 +1986,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2058151453}
+  - {fileID: 1516509826}
   m_Father: {fileID: 304725582}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2796,7 +2797,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 864485832249789816, guid: 091eea1a564254ac1aed8ffefe9435f5, type: 3}
   m_PrefabInstance: {fileID: 1090845055}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
 --- !u!1 &1516509825
 GameObject:
   m_ObjectHideFlags: 0
@@ -2872,8 +2872,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1516509825}
   m_CullTransparentMesh: 1
-=======
->>>>>>> 3b5a8b4b5cf91947edc6716f9795e7385b625dc4
 --- !u!1001 &1622480861
 PrefabInstance:
   m_ObjectHideFlags: 0
