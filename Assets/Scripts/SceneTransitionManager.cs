@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,11 +43,7 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>, IHasCol
         if (!showFadeOut)
             return;
 
-        Color = fadeColor;
-        panel.SetActive(true);
-
-        this.FadeTo(0, fadeOutDuration, fadeOutEasing);
-        this.StartDelayedSchedule(() => panel.SetActive(false), fadeOutDuration);
+        fadeOut(fadeOutDuration, fadeColor);
     }
 
     public void SwitchScene(string sceneName)
@@ -54,13 +51,34 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>, IHasCol
         if (!showFadeIn)
             return;
 
-        var prepare = fadeColor;
+        fadeIn(fadeInDuration, fadeColor);
+        this.StartDelayedSchedule(() => this.LoadSceneAsync(sceneName), fadeInDuration);
+    }
+
+    private void fadeIn(float duration, Color color)
+    {
+        var prepare = color;
         prepare.a = 0;
 
         Color = prepare;
         panel.SetActive(true);
 
-        this.FadeTo(1, fadeInDuration, fadeInEasing);
-        this.StartDelayedSchedule(() => this.LoadSceneAsync(sceneName), fadeInDuration);
+        this.FadeTo(1, duration, fadeInEasing);
+    }
+
+    private void fadeOut(float duration, Color color)
+    {
+        Color = color;
+        panel.SetActive(true);
+
+        this.FadeTo(0, duration, fadeOutEasing);
+        this.StartDelayedSchedule(() => panel.SetActive(false), fadeOutDuration);
+    }
+
+    public void FadeInOutScreen(float fadeDuration, float delayUntilFadeOut, Color color)
+    {
+        fadeIn(fadeDuration, color);
+
+        this.StartDelayedSchedule(() => fadeOut(fadeDuration, color), fadeDuration + delayUntilFadeOut);
     }
 }

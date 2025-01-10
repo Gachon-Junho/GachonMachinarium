@@ -2,18 +2,10 @@ using UnityEngine;
 
 public class ItemSnapPoint : MonoBehaviour
 {
-    public string ItemName;
-    public ItemType TargetType;
+    public ItemInfo TargetItem;
 
-    // Start is called before the first frame update
-    void Start()
+    public virtual void OnItemSnapped(Item item)
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        Destroy(gameObject);
     }
 }
