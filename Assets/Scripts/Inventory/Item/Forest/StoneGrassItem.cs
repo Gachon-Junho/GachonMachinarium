@@ -18,7 +18,7 @@ public class StoneGrassItem : Item
 
         var direction = (snapPoint.transform.position - Player.Current.transform.position).normalized;
 
-        rigidbody.AddForce(direction * velocity + new Vector3(0, 4.5f, 2), ForceMode.Impulse);
+        rigidbody.AddForce(direction * velocity + new Vector3(0, 5f, 0), ForceMode.Impulse);
         snapPoint.collider.isTrigger = true;
     }
 }
