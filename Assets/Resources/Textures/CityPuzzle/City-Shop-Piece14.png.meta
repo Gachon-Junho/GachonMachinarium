@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 769bc7769cd1ca343bc69dd211215b14
+guid: 6f4893a432279f841a69476e6562dc01
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -53,7 +53,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: 1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -93,43 +93,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline: []
     physicsShape:
-    - - {x: -41, y: 18}
-      - {x: -44, y: 15}
-      - {x: -12, y: -18}
-      - {x: 44, y: -18}
-      - {x: 44, y: -14}
-      - {x: 12, y: 18}
+    - - {x: -42, y: 24}
+      - {x: -45, y: 23}
+      - {x: -45, y: 20}
+      - {x: -4, y: -25}
+      - {x: 1, y: -25}
+      - {x: 46, y: 20}
+      - {x: 46, y: 21}
+      - {x: 43, y: 24}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 1537655665

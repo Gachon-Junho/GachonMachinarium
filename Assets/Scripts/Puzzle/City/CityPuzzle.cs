@@ -12,7 +12,7 @@ public class CityPuzzle : Puzzle
     public override void Initialize()
     {
         snapPoints.ForEach(s => s.Initialize(this));
-        keyPieces.ForEach(k => k.ResetToInitialState());
+        keyPieces.ForEach(k => k.ResetToInitialState(this));
     }
 
     protected override bool CheckCondition()
@@ -25,7 +25,7 @@ public class CityPuzzle : Puzzle
                 success = false;
         }
 
-        if (!success && keyPieces.ToList().TrueForAll(k => k.Snapped))
+        if (!success && snapPoints.ToList().TrueForAll(s => s.KeyPiece != null))
         {
             UpdateState(PuzzlePlayingState.Failed);
             this.StartDelayedSchedule(() => UpdateState(PuzzlePlayingState.Playing), 2f);
@@ -45,6 +45,8 @@ public class CityPuzzle : Puzzle
     {
         base.OnCompleted();
 
+        print("Success!");
+
         this.StartDelayedSchedule(() =>
         {
             gameObject.SetActive(false);
@@ -55,7 +57,17 @@ public class CityPuzzle : Puzzle
     protected override void OnFailed()
     {
         base.OnFailed();
+
+        print("Failed!");
+        this.StartDelayedSchedule(() =>
+        {
+            Initialize();
+            UpdateState(PuzzlePlayingState.Playing);
+        }, 2f);
     }
 
-
+    public KeyPieceSnapPoint GetHovering()
+    {
+        return snapPoints.FirstOrDefault(p => p.Hovering);
+    }
 }

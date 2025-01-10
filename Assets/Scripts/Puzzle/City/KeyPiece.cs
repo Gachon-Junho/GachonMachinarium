@@ -13,6 +13,8 @@ public class KeyPiece : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
     private RaycastHit hit;
     private bool hits;
 
+    private CityPuzzle puzzle;
+
     public bool Snapped;
 
     private void Start()
@@ -27,28 +29,22 @@ public class KeyPiece : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (Snapped)
+            return;
+
         transform.position = eventData.position;
-
-        var ray = Camera.main!.ScreenPointToRay(Input.mousePosition);
-
-        hit = Physics.RaycastAll(ray, float.MaxValue).FirstOrDefault(h => h.collider.GetComponent<KeyPieceSnapPoint>());
-        hits = hit.collider != null;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (!hits)
-        {
-            ResetToInitialState();
+        if (Snapped)
             return;
-        }
 
-        print(hit.collider.name);
-        var snap = hit.collider.GetComponent<KeyPieceSnapPoint>();
+        var snap = puzzle.GetHovering();
 
-        if (snap == null)
+        if (snap == null || snap.KeyPiece != null)
         {
-            ResetToInitialState();
+            ResetToInitialState(null);
             return;
         }
 
@@ -57,8 +53,10 @@ public class KeyPiece : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
         Snapped = true;
     }
 
-    public void ResetToInitialState()
+    public void ResetToInitialState(CityPuzzle puzzle)
     {
+        this.puzzle ??= puzzle;
+
         StopAllCoroutines();
         this.MoveTo(initialPosition, 0.5f, Easing.OutQuint);
         Snapped = false;
