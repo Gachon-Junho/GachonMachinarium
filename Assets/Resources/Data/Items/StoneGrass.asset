@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Stone Grass
   Type: 2
   ItemIcon: {fileID: 21300000, guid: a70669c94892b4a48a7e0a7921077406, type: 3}
-  ItemPrefab: {fileID: 2726598301492785687, guid: a9a6df2823b5de24a85b4d7a83584a7a, type: 3}
+  ItemPrefab: {fileID: 2726598301492785687, guid: a0f4592ff668ee540ac633485a6b938b, type: 3}
   ItemViewPrefab: {fileID: 7856684562824104285, guid: 091eea1a564254ac1aed8ffefe9435f5, type: 3}
   IsStackable: 0
   StackInfo: []
