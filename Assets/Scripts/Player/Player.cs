@@ -18,6 +18,9 @@ public class Player : Singleton<Player>
     [SerializeField]
     private Animator animator;
 
+    [SerializeField]
+    private AudioClip pickitem;
+
     private float? requestedPosition;
     private int lastDirection;
 
@@ -86,6 +89,8 @@ public class Player : Singleton<Player>
         item.FadeTo(0, 0.12f, Easing.OutQuint);
         inBoundary.Remove(item);
         Destroy(item.gameObject, 0.12f);
+
+        ProxyMonoBehavior.Current.Play(pickitem);
     }
 
     private void OnMovedToDestination()
