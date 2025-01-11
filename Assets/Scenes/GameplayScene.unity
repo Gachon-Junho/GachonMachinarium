@@ -359,7 +359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3796613147292013400, guid: 29db602510e6340e581c8061af337291, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3920896559106830741, guid: 29db602510e6340e581c8061af337291, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2377,7 +2377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3796613147292013400, guid: 42b40a67481324eb1bd2b212a1f05185, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4540142610632608442, guid: 42b40a67481324eb1bd2b212a1f05185, type: 3}
       propertyPath: m_Color.a
@@ -3758,7 +3758,7 @@ MonoBehaviour:
   fadeInDuration: 1
   fadeOutDuration: 1
   showFadeIn: 1
-  showFadeOut: 1
+  showFadeOut: 0
   fadeInEasing: 1
   fadeOutEasing: 1
   fadeColor: {r: 1, g: 1, b: 1, a: 1}

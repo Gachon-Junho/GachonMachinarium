@@ -7,7 +7,7 @@ public class KeyPieceSnapPoint : AdjustableColor, IPointerEnterHandler, IPointer
     public KeyPiece KeyPiece { get; private set; }
 
     private CityPuzzle puzzle;
-    private Color initialColor;
+    private Color? initialColor;
 
     public bool Hovering { get; private set; }
 
@@ -29,7 +29,9 @@ public class KeyPieceSnapPoint : AdjustableColor, IPointerEnterHandler, IPointer
     {
         this.puzzle = puzzle;
         KeyPiece = null;
-        this.ColorTo(initialColor, 0.3f, Easing.OutQuint);
+        initialColor ??= Color;
+
+        this.ColorTo(initialColor.Value, 0.3f, Easing.OutQuint);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -43,6 +45,6 @@ public class KeyPieceSnapPoint : AdjustableColor, IPointerEnterHandler, IPointer
     {
         Hovering = false;
         StopAllCoroutines();
-        this.ColorTo(KeyPiece == null ? initialColor : Color.clear, 0.3f, Easing.OutQuint);
+        this.ColorTo(KeyPiece == null ? initialColor!.Value : Color.clear, 0.3f, Easing.OutQuint);
     }
 }

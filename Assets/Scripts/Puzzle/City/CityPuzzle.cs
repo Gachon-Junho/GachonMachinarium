@@ -26,10 +26,7 @@ public class CityPuzzle : Puzzle
         }
 
         if (!success && snapPoints.ToList().TrueForAll(s => s.KeyPiece != null))
-        {
             UpdateState(PuzzlePlayingState.Failed);
-            this.StartDelayedSchedule(() => UpdateState(PuzzlePlayingState.Playing), 2f);
-        }
 
         return success;
     }

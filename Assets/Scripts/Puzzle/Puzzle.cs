@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class Puzzle : MonoBehaviour
@@ -11,19 +12,15 @@ public abstract class Puzzle : MonoBehaviour
     /// </summary>
     public abstract void Initialize();
 
-    public void Start()
+    private void OnEnable()
     {
         Initialize();
-        StartPlay();
+        UpdateState(PuzzlePlayingState.Playing);
     }
 
     public virtual void StartPlay()
     {
         State = PuzzlePlayingState.Playing;
-    }
-
-    protected virtual void FixedUpdate()
-    {
     }
 
     /// <summary>

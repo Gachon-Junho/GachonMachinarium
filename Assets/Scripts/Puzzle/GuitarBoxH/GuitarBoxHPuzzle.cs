@@ -22,10 +22,9 @@ public class GuitarBoxHPuzzle : Puzzle, IPointerClickHandler
     private ClickInfo[] info;
     private int chance;
 
-    public override void Initialize()
+    private void Start()
     {
         info = new ClickInfo[clickPoints.Length];
-        chance = clickPoints.Length;
 
         userControl.CollisionEnter += (_, other) =>
         {
@@ -51,10 +50,19 @@ public class GuitarBoxHPuzzle : Puzzle, IPointerClickHandler
         {
             var clickPoint = clickPoints[i];
             info[i] = new ClickInfo(clickPoint);
-
-            clickPoint.RotateTo(new Vector3(0, 0, Random.Range(0f, 360f)));
-            lights[i].ColorTo(Color.white);
         }
+    }
+
+    public override void Initialize()
+    {
+        chance = clickPoints.Length;
+        clickPoints.ForEach(p => p.RotateTo(new Vector3(0, 0, Random.Range(0f, 360f)), 0.1f, Easing.OutQuint));
+        lights.ForEach(l => l.ColorTo(Color.white, 0.3f, Easing.Out));
+        info.ForEach(i =>
+        {
+            i.Collided = false;
+            i.Clicked = false;
+        });
     }
 
     private void Update()
@@ -65,8 +73,16 @@ public class GuitarBoxHPuzzle : Puzzle, IPointerClickHandler
 
     protected override bool CheckCondition()
     {
+        bool clicked = info.ToList().TrueForAll(i => i.Clicked);
+
+        if (!clicked && chance == 0)
+        {
+            UpdateState(PuzzlePlayingState.Failed);
+            return false;
+        }
+
         // 모두 다 클릭 되어야하고, 기회는 3번
-        return info.ToList().TrueForAll(i => i.Clicked) && chance >= 0;
+        return clicked && chance == 0;
     }
 
     protected override void CommitChange()
@@ -74,14 +90,12 @@ public class GuitarBoxHPuzzle : Puzzle, IPointerClickHandler
         var collided = info.FirstOrDefault(i => i.Collided);
         int index = Array.IndexOf(clickPoints, collided?.Point);
 
-        chance--;
-
-        // 실패
-        if (chance <= 0 && collided == null)
-            UpdateState(PuzzlePlayingState.Failed);
-
+        // 빈 공간에 클릭
         if (collided == null || index == -1)
+        {
+            CheckCondition();
             return;
+        }
 
         collided.Clicked = true;
         lights[index].ColorTo(collided.Point.Color, 0.3f, Easing.Out);
@@ -129,6 +143,7 @@ public class GuitarBoxHPuzzle : Puzzle, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        chance--;
         CommitChange();
     }
 

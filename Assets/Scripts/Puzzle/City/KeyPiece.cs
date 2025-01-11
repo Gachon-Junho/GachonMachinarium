@@ -9,7 +9,7 @@ public class KeyPiece : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
     [SerializeField]
     private new Collider2D collider;
 
-    private Vector2 initialPosition;
+    private Vector2? initialPosition;
     private RaycastHit hit;
     private bool hits;
 
@@ -20,6 +20,11 @@ public class KeyPiece : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
     private void Start()
     {
         initialPosition = transform.position;
+
+        // Rect Transform과 Transform의 관련성이 Start() 호출 이전에 어떻게 되는지 모르겠음.
+        // 이상하지만 다시 한 번 위치를 설정합니다.
+        StopAllCoroutines();
+        this.MoveTo(initialPosition!.Value);
     }
 
 
@@ -57,8 +62,11 @@ public class KeyPiece : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
     {
         this.puzzle ??= puzzle;
 
+        // Start 이전에 Initialize()가 실행되면 null일 가능성이 있습니다.
+        initialPosition ??= transform.position;
+
         StopAllCoroutines();
-        this.MoveTo(initialPosition, 0.5f, Easing.OutQuint);
+        this.MoveTo(initialPosition.Value, 0.5f, Easing.OutQuint);
         Snapped = false;
     }
 }
