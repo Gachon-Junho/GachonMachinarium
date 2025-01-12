@@ -1962,6 +1962,9 @@ MonoBehaviour:
   - {fileID: 7535263767279549549}
   - {fileID: 7834790449018289957}
   - {fileID: 6780446942380726782}
+  puzzleClick: {fileID: 8300000, guid: fd2acdef13b85a248816927d2079c121, type: 3}
+  puzzleFail: {fileID: 8300000, guid: 77cf225c754abcb4ba816178712cd964, type: 3}
+  puzzleComplete: {fileID: 8300000, guid: 77cf225c754abcb4ba816178712cd964, type: 3}
 --- !u!1 &3838527184171791593
 GameObject:
   m_ObjectHideFlags: 0

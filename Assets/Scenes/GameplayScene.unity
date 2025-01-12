@@ -2560,9 +2560,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8290277245996339303, guid: 42b40a67481324eb1bd2b212a1f05185, type: 3}
+      propertyPath: puzzleFail
+      value: 
+      objectReference: {fileID: 8300000, guid: 77cf225c754abcb4ba816178712cd964, type: 3}
+    - target: {fileID: 8290277245996339303, guid: 42b40a67481324eb1bd2b212a1f05185, type: 3}
       propertyPath: PuzzlePanel
       value: 
       objectReference: {fileID: 1040022407}
+    - target: {fileID: 8290277245996339303, guid: 42b40a67481324eb1bd2b212a1f05185, type: 3}
+      propertyPath: puzzleClick
+      value: 
+      objectReference: {fileID: 8300000, guid: fd2acdef13b85a248816927d2079c121, type: 3}
+    - target: {fileID: 8290277245996339303, guid: 42b40a67481324eb1bd2b212a1f05185, type: 3}
+      propertyPath: puzzleComplete
+      value: 
+      objectReference: {fileID: 8300000, guid: f6fa9fb7e805e614ea666e358fe0c762, type: 3}
     - target: {fileID: 8290277245996339303, guid: 42b40a67481324eb1bd2b212a1f05185, type: 3}
       propertyPath: Backup.Array.size
       value: 3

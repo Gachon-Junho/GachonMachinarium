@@ -19,6 +19,15 @@ public class GuitarBoxHPuzzle : Puzzle, IPointerClickHandler
     [SerializeField]
     private float revolutionPerSecond;
 
+    [SerializeField]
+    private AudioClip puzzleComplete;
+
+    [SerializeField]
+    private AudioClip puzzleFail;
+
+    [SerializeField]
+    private AudioClip puzzleClick;
+
     private ClickInfo[] info;
     private int chance;
 
@@ -110,6 +119,8 @@ public class GuitarBoxHPuzzle : Puzzle, IPointerClickHandler
         lights.ForEach(l => l.ColorTo(Color.black, 0.5f, Easing.OutQuint));
         print("Fail!");
 
+        ProxyMonoBehavior.Current.Play(puzzleFail);
+
         this.StartDelayedSchedule(() =>
         {
             Initialize();
@@ -132,6 +143,8 @@ public class GuitarBoxHPuzzle : Puzzle, IPointerClickHandler
 
         print("Complete!");
 
+        ProxyMonoBehavior.Current.Play(puzzleComplete);
+
         this.StartDelayedSchedule(() =>
         {
             gameObject.SetActive(false);
@@ -143,6 +156,7 @@ public class GuitarBoxHPuzzle : Puzzle, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        ProxyMonoBehavior.Current.Play(puzzleClick);
         chance--;
         CommitChange();
     }

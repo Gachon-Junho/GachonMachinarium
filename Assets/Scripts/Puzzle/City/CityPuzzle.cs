@@ -56,6 +56,7 @@ public class CityPuzzle : Puzzle
         base.OnFailed();
 
         print("Failed!");
+
         this.StartDelayedSchedule(() =>
         {
             Initialize();

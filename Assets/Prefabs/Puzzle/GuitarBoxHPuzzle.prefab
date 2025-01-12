@@ -489,6 +489,9 @@ MonoBehaviour:
   - {fileID: 7403912655342884237}
   userControl: {fileID: 8048124379359750859}
   revolutionPerSecond: 1
+  puzzleComplete: {fileID: 8300000, guid: f6fa9fb7e805e614ea666e358fe0c762, type: 3}
+  puzzleFail: {fileID: 8300000, guid: 77cf225c754abcb4ba816178712cd964, type: 3}
+  puzzleClick: {fileID: 8300000, guid: fd2acdef13b85a248816927d2079c121, type: 3}
 --- !u!222 &7765601735693953624
 CanvasRenderer:
   m_ObjectHideFlags: 0
