@@ -4040,6 +4040,8 @@ MonoBehaviour:
   maxCapacity: 9
   itemTable: {fileID: 11400000, guid: 55e46be2a18f24de9a5b8e4146ac2642, type: 2}
   hiding: {fileID: 1979830322}
+  merge: {fileID: 8300000, guid: ee569e29154264e44ada6d0d03212926, type: 3}
+  mergeFail: {fileID: 8300000, guid: 024529274cca6634d97d38cde8172586, type: 3}
 --- !u!1 &2000648666
 GameObject:
   m_ObjectHideFlags: 0

@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3070ef395da4459da4bcb99aa66f6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Image: {fileID: 5731220626256107215}
+  mergeFail: {fileID: 8300000, guid: 024529274cca6634d97d38cde8172586, type: 3}
+  ItemInfo: {fileID: 0}
   rect: {fileID: 864485832249789816}
-  itemIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  image: {fileID: 5731220626256107215}
-  puzzlePiece: {fileID: 4855315374988636246, guid: 6b8a90bf0bede41538192a5cd03893de, type: 3}

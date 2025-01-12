@@ -8,6 +8,9 @@ public class StoneGrassItem : Item
     private new Rigidbody rigidbody;
 
     [SerializeField]
+    private AudioClip drop;
+
+    [SerializeField]
     private float velocity = 5;
 
     protected override void OnItemDropped(RaycastHit snapPoint)
@@ -15,6 +18,8 @@ public class StoneGrassItem : Item
         Collider.isTrigger = false;
         rigidbody.isKinematic = false;
         transform.position = Player.Current.transform.position + new Vector3(0, 0, -1);
+
+        ProxyMonoBehavior.Current.Play(drop);
 
         var direction = (snapPoint.transform.position - Player.Current.transform.position).normalized;
 

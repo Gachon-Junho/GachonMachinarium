@@ -21,6 +21,9 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
     [SerializeField]
     private HidingInventoryBar hiding;
 
+    [SerializeField]
+    private AudioClip merge;
+
     private List<ItemView> items = new List<ItemView>();
     private HorizontalLayoutGroup layout;
 
@@ -95,6 +98,8 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
 
         var merged = Add(combination.Result);
         merged.transform.SetSiblingIndex(depth);
+
+        ProxyMonoBehavior.Current.Play(merge);
 
         return true;
     }

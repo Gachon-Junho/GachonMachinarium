@@ -156,6 +156,8 @@ MonoBehaviour:
   sprite: {fileID: 8381144565843773544}
   Info: {fileID: 11400000, guid: 88793627d4363471f83f9a97eb7e4cce, type: 2}
   rigidbody: {fileID: 2037688198832795474}
+  velocity: 5
+  dropStone: {fileID: 8300000, guid: e33df249a451b0c40904c4c4eaf00a0a, type: 3}
 --- !u!54 &2037688198832795474
 Rigidbody:
   m_ObjectHideFlags: 0

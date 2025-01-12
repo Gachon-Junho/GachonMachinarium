@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class ItemView : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField]
+    private AudioClip mergeFail;
+
     public Sprite ItemIcon
     {
         get => Image.sprite;
@@ -106,6 +109,7 @@ public class ItemView : AdjustableColor, IBeginDragHandler, IDragHandler, IEndDr
         {
             StopAllCoroutines();
             StartCoroutine(alarmNotMergeable());
+            ProxyMonoBehavior.Current.Play(mergeFail);
         }
 
         mergeable = newMergeable;
