@@ -44,7 +44,7 @@ public class FallenTree : MonoBehaviour
                 a.Rigidbody.isKinematic = true;
 
                 // 1초동안 화면이 페이드 인 되고 1.5초 동안 상태 유지후 1초동안 페이드 아웃
-                SceneTransitionManager.Current.FadeInOutScreen(1f, 1.5f, Color.black);
+                SceneTransitionManager.Current.FadeInOutScreen(1f, 1f, Color.black);
 
                 // ProxyMonoBehavior.Current.Play(hitTree);
 
