@@ -127,6 +127,7 @@ MonoBehaviour:
   sprite: {fileID: 6626472709194447970}
   boundary: {fileID: 8336119302848873360}
   animator: {fileID: 2746582061583756056}
+  pickitem: {fileID: 8300000, guid: 3f6f527cf5a1a704d954fd85e003d207, type: 3}
 --- !u!54 &1890753122243213105
 Rigidbody:
   m_ObjectHideFlags: 0
