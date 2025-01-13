@@ -15,11 +15,14 @@ public class Home : MonoBehaviour
         if (other.gameObject.GetComponent<ForestStoneItem>() != null)
         {
             if (--countUntilDrop <= 0)
+            {
+                // 2번 맞음
                 rigidbody.isKinematic = false;
-            else
-                return;
 
-            return;
+                return;
+            }
+
+            // 2번 맞기 전
         }
     }
 }
