@@ -93,6 +93,11 @@ public class Player : Singleton<Player>
         ProxyMonoBehavior.Current.Play(pickitem);
     }
 
+    public void SwitchForm()
+    {
+
+    }
+
     private void OnMovedToDestination()
     {
         // TODO: 그냥그냥

@@ -7,9 +7,6 @@ using Vector3 = UnityEngine.Vector3;
 
 public class PlayerControlReceptor : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField]
-    private Player player;
-
     private bool isControlling;
 
     private void Update()
@@ -19,7 +16,7 @@ public class PlayerControlReceptor : MonoBehaviour, IPointerDownHandler, IPointe
 
         float destination = Camera.main!.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, Camera.main!.transform.position.z)).x - Camera.main!.transform.position.x * 2;
 
-        player.MoveTo(destination);
+        Player.Current.MoveTo(destination);
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -28,10 +25,18 @@ public class PlayerControlReceptor : MonoBehaviour, IPointerDownHandler, IPointe
 
         var hits = Physics.RaycastAll(ray);
         var item = hits.FirstOrDefault(h => h.collider.CompareTag("Item"));
+        var player = hits.FirstOrDefault(h => h.collider.CompareTag("Player"));
+
+        if (player.collider != null)
+        {
+            print("switch form");
+            Player.Current.SwitchForm();
+            return;
+        }
 
         if (item.collider != null)
         {
-            player.OnItemClicked(item.collider.GetComponentInParent<Item>());
+            Player.Current.OnItemClicked(item.collider.GetComponentInParent<Item>());
             return;
         }
 
