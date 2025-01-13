@@ -25,5 +25,6 @@ public class StoneGrassItem : Item
 
         rigidbody.AddForce(direction * velocity + new Vector3(1, 0f, 0), ForceMode.Impulse);
         snapPoint.collider.isTrigger = true;
+        //Destroy();
     }
 }

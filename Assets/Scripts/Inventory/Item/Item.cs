@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -37,7 +38,7 @@ public class Item : MonoBehaviour, IHasColor
                 return false;
 
             // 스냅포인트 지점에 원하지 않는 아이템은 필터함.
-            if (!hit.collider.gameObject.GetComponent<ItemSnapPoint>().TargetItem.Equals(Info))
+            if (!hit.collider.gameObject.GetComponent<ItemSnapPoint>().TargetItem.ToList().Exists(i => ReferenceEquals(i, Info)))
                 return false;
 
             OnItemDropped(hit);
