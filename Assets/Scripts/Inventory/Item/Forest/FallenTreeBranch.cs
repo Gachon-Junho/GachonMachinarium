@@ -18,6 +18,10 @@ public class FallenTreeBranch : MonoBehaviour
 
         item.Rigidbody.isKinematic = true;
         SceneTransitionManager.Current.FadeInOutScreen(1f, 1f, Color.black);
-        this.StartDelayedSchedule(() => Player.Current.transform.position = playerPosition, 1f);
+        this.StartDelayedSchedule(() =>
+        {
+            Player.Current.transform.position = playerPosition;
+            Destroy(gameObject);
+        }, 1f);
     }
 }
