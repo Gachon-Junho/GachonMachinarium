@@ -15,6 +15,7 @@ public class StoneGrassItem : Item
 
     protected override void OnItemDropped(RaycastHit snapPoint)
     {
+        // 플레이어에게 아이템 던지기
         Collider.isTrigger = false;
         rigidbody.isKinematic = false;
         transform.position = Player.Current.transform.position + new Vector3(0, 0, -1);
@@ -25,6 +26,5 @@ public class StoneGrassItem : Item
 
         rigidbody.AddForce(direction * velocity + new Vector3(1, 0f, 0), ForceMode.Impulse);
         snapPoint.collider.isTrigger = true;
-        //Destroy();
     }
 }

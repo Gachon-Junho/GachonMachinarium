@@ -11,6 +11,9 @@ public class FallenTree : MonoBehaviour
     [SerializeField]
     private Vector3 rewardItemPosition;
 
+    [SerializeField]
+    private Vector3 playerPosition;
+
     private AudioClip hitTree;
 
     private AudioClip brokeAxe;
@@ -18,29 +21,45 @@ public class FallenTree : MonoBehaviour
     // TODO: 이미지 들어오면 IHasColor 추가
     private void OnCollisionEnter(Collision other)
     {
-        var item = other.gameObject.GetComponent<AxeItem>();
+        var item = other.gameObject.GetComponent<Item>();
 
         if (item == null)
             return;
 
-        // 여기서부터 도끼가 나무에 맞음.
-        item.Rigidbody.isKinematic = true;
-
-        // 1초동안 화면이 페이드 인 되고 1.5초 동안 상태 유지후 1초동안 페이드 아웃
-        SceneTransitionManager.Current.FadeInOutScreen(1f, 1.5f, Color.black);
-
-        // ProxyMonoBehavior.Current.Play(hitTree);
-
-        // 맞고나서 1초 뒤에 아래 코드 실행
-        this.StartDelayedSchedule(() =>
+        switch (item)
         {
-            Destroy(gameObject);
-            Destroy(item.gameObject);
+            case StoneGrassItem s:
+                s.Rigidbody.isKinematic = true;
+                SceneTransitionManager.Current.FadeInOutScreen(1f, 1f, Color.black);
 
-            // ProxyMonoBehavior.Current.Play(brokeAxe);
+                this.StartDelayedSchedule(() =>
+                {
+                    s.Hitted.collider.isTrigger = false;
+                    Player.Current.transform.position = playerPosition;
+                }, 1f);
 
-            var reward = rewardItem.CreateItem();
-            reward.transform.position = rewardItemPosition;
-        }, 1f);
+                break;
+
+            case AxeItem a:
+                a.Rigidbody.isKinematic = true;
+
+                // 1초동안 화면이 페이드 인 되고 1.5초 동안 상태 유지후 1초동안 페이드 아웃
+                SceneTransitionManager.Current.FadeInOutScreen(1f, 1.5f, Color.black);
+
+                // ProxyMonoBehavior.Current.Play(hitTree);
+
+                // 맞고나서 1초 뒤에 아래 코드 실행
+                this.StartDelayedSchedule(() =>
+                {
+                    var reward = rewardItem.CreateItem();
+                    reward.transform.position = rewardItemPosition;
+
+                    // ProxyMonoBehavior.Current.Play(brokeAxe);
+
+                    Destroy(gameObject);
+                    Destroy(item.gameObject);
+                }, 1f);
+                break;
+        }
     }
 }

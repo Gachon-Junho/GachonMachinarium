@@ -26,22 +26,22 @@ public class Item : MonoBehaviour, IHasColor
     public ItemInfo Info;
 
     private bool dragging;
-    private RaycastHit hit;
+    public RaycastHit Hitted;
 
     public bool CheckSnappable()
     {
         var ray = Camera.main!.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, float.MaxValue))
+        if (Physics.Raycast(ray, out Hitted, float.MaxValue))
         {
-            if (!hit.collider.CompareTag("SnapPoint"))
+            if (!Hitted.collider.CompareTag("SnapPoint"))
                 return false;
 
             // 스냅포인트 지점에 원하지 않는 아이템은 필터함.
-            if (!hit.collider.gameObject.GetComponent<ItemSnapPoint>().TargetItem.ToList().Exists(i => ReferenceEquals(i, Info)))
+            if (!Hitted.collider.gameObject.GetComponent<ItemSnapPoint>().TargetItem.ToList().Exists(i => ReferenceEquals(i, Info)))
                 return false;
 
-            OnItemDropped(hit);
+            OnItemDropped(Hitted);
 
             return true;
         }
