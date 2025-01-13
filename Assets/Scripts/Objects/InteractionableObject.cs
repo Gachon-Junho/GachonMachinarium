@@ -1,54 +1,48 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
-public class InteractionableItem : MonoBehaviour
+public class InteractionableObject : MonoBehaviour
 {
-    [SerializeField]
-    private ItemInfo rewardItem;
-
-    [SerializeField]
-    private Vector3 itemSpawnPosition;
+    protected bool Clicked { get; private set; }
+    protected int ClickCount { get; private set; }
 
     private Vector3 initialPosition;
-
-    private bool clicked;
-    private int clickCount;
-    private bool rewarded;
 
     private void Start()
     {
         initialPosition = transform.position;
+        OnStart();
     }
 
-    private void OnMouseDown()
+    protected virtual void OnStart()
     {
-        if (clicked)
+
+    }
+
+    protected virtual void StartInteraction()
+    {
+    }
+
+    protected virtual void OnMouseDown()
+    {
+        if (Clicked)
             return;
 
-        clicked = true;
-        clickCount++;
+        Clicked = true;
+        StartInteraction();
 
-        StopAllCoroutines();
-        StartCoroutine(shake());
-
-        if (clickCount % 3 != 0)
-            return;
-
-        if (rewarded)
-            return;
-
-        var item = rewardItem.CreateItem();
-        item.transform.position = itemSpawnPosition;
-        item.Color = Color.clear;
-        item.ColorTo(Color.white, 0.1f, Easing.OutQuint);
-
-        rewarded = true;
+        ClickCount++;
     }
 
     private void OnMouseUp()
     {
-        clicked = false;
+        Clicked = false;
+    }
+
+    public void Shake()
+    {
+        StopAllCoroutines();
+        StartCoroutine(shake());
     }
 
     private IEnumerator shake()
