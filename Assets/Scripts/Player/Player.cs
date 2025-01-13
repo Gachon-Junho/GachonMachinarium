@@ -33,9 +33,11 @@ public class Player : Singleton<Player>
     private static readonly int expanded = Animator.StringToHash("Expanded");
     private static readonly int is_walking = Animator.StringToHash("IsWalking");
 
+    private bool formChanging;
+
     private void Update()
     {
-        if (!requestedPosition.HasValue)
+        if (!requestedPosition.HasValue || formChanging)
             return;
 
         if (!Precision.AlmostEquals(-requestedPosition.Value, transform.position.x))
@@ -57,6 +59,10 @@ public class Player : Singleton<Player>
 
     public void MoveTo(float x)
     {
+        // 폰 전환 중에는 이동 차단
+        if (formChanging)
+            return;
+
         requestedPosition = x;
 
         int direction = -requestedPosition.Value >= transform.position.x ? 1 : -1;
@@ -95,7 +101,11 @@ public class Player : Singleton<Player>
 
     public void SwitchForm()
     {
+        animator.SetBool(expanded, !animator.GetBool(expanded));
+        formChanging = true;
 
+        // 애니메이션 전환 완료까지 대기
+        this.StartDelayedSchedule(() => formChanging = false, 0.5f);
     }
 
     private void OnMovedToDestination()

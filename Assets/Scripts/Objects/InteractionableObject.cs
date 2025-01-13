@@ -29,9 +29,9 @@ public class InteractionableObject : MonoBehaviour
             return;
 
         Clicked = true;
-        StartInteraction();
-
         ClickCount++;
+
+        StartInteraction();
     }
 
     private void OnMouseUp()

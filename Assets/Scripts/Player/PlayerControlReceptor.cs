@@ -29,7 +29,6 @@ public class PlayerControlReceptor : MonoBehaviour, IPointerDownHandler, IPointe
 
         if (player.collider != null)
         {
-            print("switch form");
             Player.Current.SwitchForm();
             return;
         }

@@ -271,6 +271,52 @@ public static class MonoBehaviorExtensions
         return cor;
     }
 
+    public static Coroutine FadeToFromZero<T>(this T mono, float alpha, double duration = 0, Easing easing = Easing.None)
+        where T : MonoBehaviour, IHasColor
+    {
+        var cor = mono.StartCoroutine(transformLoop(alpha, Time.time, Time.time + duration));
+
+        IEnumerator transformLoop(float to, double startTime, double endTime)
+        {
+            float start = 0;
+
+            while (Time.time < endTime)
+            {
+                mono.Color = new Color(mono.Color.r,
+                    mono.Color.g,
+                    mono.Color.b,
+                    Interpolation.ValueAt(Time.time, start, to, startTime, endTime, new EasingFunction(easing)));
+
+                yield return null;
+            }
+        }
+
+        return cor;
+    }
+
+    public static Coroutine FadeToFromOne<T>(this T mono, float alpha, double duration = 0, Easing easing = Easing.None)
+        where T : MonoBehaviour, IHasColor
+    {
+        var cor = mono.StartCoroutine(transformLoop(alpha, Time.time, Time.time + duration));
+
+        IEnumerator transformLoop(float to, double startTime, double endTime)
+        {
+            float start = 1;
+
+            while (Time.time < endTime)
+            {
+                mono.Color = new Color(mono.Color.r,
+                    mono.Color.g,
+                    mono.Color.b,
+                    Interpolation.ValueAt(Time.time, start, to, startTime, endTime, new EasingFunction(easing)));
+
+                yield return null;
+            }
+        }
+
+        return cor;
+    }
+
     public static Coroutine ColorTo<T>(this T mono, Color color, double duration = 0, Easing easing = Easing.None)
         where T : MonoBehaviour, IHasColor
     {
