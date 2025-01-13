@@ -56,8 +56,9 @@ public class FallenTree : MonoBehaviour
 
                     // ProxyMonoBehavior.Current.Play(brokeAxe);
 
-                    Destroy(gameObject);
+                    Destroy(FindFirstObjectByType<StoneGrassItem>()?.gameObject);
                     Destroy(item.gameObject);
+                    Destroy(gameObject);
                 }, 1f);
                 break;
         }
