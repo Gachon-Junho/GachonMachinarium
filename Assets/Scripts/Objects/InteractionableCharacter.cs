@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class InteractionableCharacter : InteractionableObject, IHasColor
+public abstract class InteractionableCharacter : InteractionableObject, IHasColor
 {
     public Color Color
     {
@@ -28,6 +28,7 @@ public class InteractionableCharacter : InteractionableObject, IHasColor
             this.FadeTo(0, 0.5f, Easing.Out);
             dialogIndex = 0;
             isInteracting = false;
+            OnCompletedInteraction();
             return;
         }
 
@@ -39,8 +40,8 @@ public class InteractionableCharacter : InteractionableObject, IHasColor
         this.FadeToFromZero(1, 0.5f, Easing.Out);
     }
 
-    protected virtual void OnDialogAt(int index)
-    {
-        // TODO: 자식클래스에서 재정의하여 대화위치에 따른 애니메이션 변화?
-    }
+    // TODO: 자식클래스에서 재정의하여 대화위치에 따른 애니메이션 변화?
+    protected abstract void OnDialogAt(int index);
+
+    protected abstract void OnCompletedInteraction();
 }
