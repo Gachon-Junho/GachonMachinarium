@@ -17,7 +17,7 @@ public abstract class InteractionableCharacter : InteractionableObject, IHasColo
     [SerializeField]
     private Sprite[] dialogs;
 
-    private bool isInteracting;
+    private bool isInteracting => dialogs.Length > dialogIndex;
     private int dialogIndex;
 
     protected override void StartInteraction()
@@ -27,13 +27,11 @@ public abstract class InteractionableCharacter : InteractionableObject, IHasColo
             StopAllCoroutines();
             this.FadeTo(0, 0.5f, Easing.Out);
             dialogIndex = 0;
-            isInteracting = false;
             OnCompletedInteraction();
             return;
         }
 
         OnDialogAt(dialogIndex);
-        isInteracting = true;
         dialogRenderer.sprite = dialogs[dialogIndex++];
 
         StopAllCoroutines();
