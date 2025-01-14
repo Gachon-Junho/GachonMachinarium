@@ -9,6 +9,9 @@ public class HomeDropArea : MonoBehaviour
     [SerializeField]
     private float spawnPositionY;
 
+    [SerializeField]
+    private AudioClip broke;
+
     private bool rewarded;
 
     private void OnTriggerEnter(Collider other)
@@ -17,6 +20,8 @@ public class HomeDropArea : MonoBehaviour
 
         if (home == null || rewarded)
             return;
+
+        ProxyMonoBehavior.Current.Play(broke);
 
         var item = itemInfo.CreateItem();
         item.transform.position = new Vector3(home.transform.position.x, spawnPositionY);
