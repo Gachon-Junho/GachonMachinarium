@@ -611,3 +611,6 @@ $RECYCLE.BIN/
 .idea
 
 .vscode
+
+# Git LFS 한도 도달에 인한 임시조치
+Assets/Resources/Models/main/main_map.fbx

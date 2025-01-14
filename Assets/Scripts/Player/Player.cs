@@ -115,8 +115,10 @@ public class Player : Singleton<Player>
 
         formChanging = true;
 
+        const float transition_duration = 1.33f;
+
         // 애니메이션 전환 완료까지 대기
-        this.StartDelayedSchedule(() => formChanging = false, 0.5f);
+        this.StartDelayedSchedule(() => formChanging = false, transition_duration);
     }
 
     private void OnMovedToDestination()
