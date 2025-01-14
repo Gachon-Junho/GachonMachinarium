@@ -13,10 +13,14 @@ public class Home : MonoBehaviour
     [SerializeField]
     private AudioClip fall;
 
+    private ForestStoneItem previousItem;
+
     // TODO: 이미지 들어오면 IHasColor 추가
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.GetComponent<ForestStoneItem>() != null)
+        var item = other.gameObject.GetComponent<ForestStoneItem>();
+
+        if (item != null && previousItem != item)
         {
             if (--countUntilDrop <= 0)
             {
@@ -28,6 +32,7 @@ public class Home : MonoBehaviour
             }
 
             // 2번 맞기 전
+            previousItem = item;
         }
     }
 }
