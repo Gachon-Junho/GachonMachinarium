@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -731,8 +730,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2125234040}
   m_HandleRect: {fileID: 2125234039}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999998
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4143,20 +4142,12 @@ VideoPlayer:
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 0.5
-  - 1
-  - 1
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: https://youtu.be/Xf72dSS0-gY?si=-xCW4wfN_IUJrUab
-  m_EnabledAudioTracks: 01010101
-  m_DirectAudioMutes: 00000000
-  m_ControlledAudioTrackCount: 4
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 0
@@ -4860,7 +4851,7 @@ MonoBehaviour:
   panel: {fileID: 394429309}
   fadeInDuration: 1
   fadeOutDuration: 1
-  timeUntilFadeOut: 3
+  timeUntilFadeOut: 7
   showFadeIn: 1
   showFadeOut: 1
   fadeInEasing: 1
