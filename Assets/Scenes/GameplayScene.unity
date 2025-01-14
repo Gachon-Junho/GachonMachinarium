@@ -731,8 +731,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2125234040}
   m_HandleRect: {fileID: 2125234039}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.9999999
+  m_Value: 1
+  m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1087,7 +1087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &394429310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4082,6 +4082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: dbf7f2b52a26b4059a5793172e56a899, type: 2}
   spawnPositionY: -0.9
+  broke: {fileID: 0}
 --- !u!1 &1640166334
 GameObject:
   m_ObjectHideFlags: 0
@@ -4142,20 +4143,12 @@ VideoPlayer:
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 0.5
-  - 1
-  - 1
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: https://youtu.be/Xf72dSS0-gY?si=-xCW4wfN_IUJrUab
-  m_EnabledAudioTracks: 01010101
-  m_DirectAudioMutes: 00000000
-  m_ControlledAudioTrackCount: 4
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 0
@@ -4381,6 +4374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 1664328398}
   countUntilDrop: 2
+  fall: {fileID: 0}
 --- !u!1 &1706546868
 GameObject:
   m_ObjectHideFlags: 0
