@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1087,7 +1086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &394429310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1539,6 +1538,8 @@ MonoBehaviour:
   rewardItem: {fileID: 11400000, guid: dbf7f2b52a26b4059a5793172e56a899, type: 2}
   rewardItemPosition: {x: 22.5, y: -1, z: 0}
   playerPosition: {x: 26, y: 0, z: 0}
+  hitTree: {fileID: 8300000, guid: e1047e85a7212174591fb80ea3d3214e, type: 3}
+  brokeAxe: {fileID: 8300000, guid: 1b49129db039a0149901bbd8ac5b7cd9, type: 3}
 --- !u!1 &479701861
 GameObject:
   m_ObjectHideFlags: 0
@@ -4142,12 +4143,18 @@ VideoPlayer:
   m_AudioOutputMode: 2
   m_TargetAudioSources:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_DirectAudioVolumes:
   - 0.5
+  - 1
+  - 1
+  - 1
   m_Url: https://youtu.be/Xf72dSS0-gY?si=-xCW4wfN_IUJrUab
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 01010101
+  m_DirectAudioMutes: 00000000
+  m_ControlledAudioTrackCount: 4
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 0
@@ -4852,7 +4859,7 @@ MonoBehaviour:
   fadeOutDuration: 1
   timeUntilFadeOut: 20
   showFadeIn: 1
-  showFadeOut: 0
+  showFadeOut: 1
   fadeInEasing: 1
   fadeOutEasing: 1
   fadeColor: {r: 1, g: 1, b: 1, a: 1}

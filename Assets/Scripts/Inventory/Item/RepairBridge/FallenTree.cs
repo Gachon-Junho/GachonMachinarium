@@ -14,8 +14,10 @@ public class FallenTree : MonoBehaviour
     [SerializeField]
     private Vector3 playerPosition;
 
+    [SerializeField]
     private AudioClip hitTree;
 
+    [SerializeField]
     private AudioClip brokeAxe;
 
     // TODO: 이미지 들어오면 IHasColor 추가
@@ -46,7 +48,7 @@ public class FallenTree : MonoBehaviour
                 // 1초동안 화면이 페이드 인 되고 1.5초 동안 상태 유지후 1초동안 페이드 아웃
                 SceneTransitionManager.Current.FadeInOutScreen(1f, 1f, Color.black);
 
-                // ProxyMonoBehavior.Current.Play(hitTree);
+                ProxyMonoBehavior.Current.Play(hitTree);
 
                 // 맞고나서 1초 뒤에 아래 코드 실행
                 this.StartDelayedSchedule(() =>
@@ -54,7 +56,7 @@ public class FallenTree : MonoBehaviour
                     var reward = rewardItem.CreateItem();
                     reward.transform.position = rewardItemPosition;
 
-                    // ProxyMonoBehavior.Current.Play(brokeAxe);
+                    ProxyMonoBehavior.Current.Play(brokeAxe);
 
                     Destroy(FindFirstObjectByType<StoneGrassItem>()?.gameObject);
                     Destroy(item.gameObject);
