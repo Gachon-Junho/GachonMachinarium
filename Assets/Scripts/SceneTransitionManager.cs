@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SceneTransitionManager : Singleton<SceneTransitionManager>, IHasColor
@@ -7,10 +9,19 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>, IHasCol
     public Color Color
     {
         get => Image.color;
-        set => Image.color = value;
+        set
+        {
+            Image.color = value;
+            ChildColors.ForEach(g => g.color = value);
+        }
     }
 
     protected Image Image => image ??= panel.GetComponent<Image>();
+
+    protected Graphic[] ChildColors => childColor ??= panel.GetComponentsInChildren<Graphic>();
+
+    private Graphic[] childColor;
+
 
     [SerializeField]
     private GameObject panel;
@@ -20,6 +31,9 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>, IHasCol
 
     [SerializeField]
     private float fadeOutDuration = 1;
+
+    [SerializeField]
+    private float timeUntilFadeOut = 0;
 
     [SerializeField]
     private bool showFadeIn;
@@ -71,8 +85,13 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>, IHasCol
         Color = color;
         panel.SetActive(true);
 
-        this.FadeTo(0, duration, fadeOutEasing);
-        this.StartDelayedSchedule(() => panel.SetActive(false), fadeOutDuration);
+        this.StartDelayedSchedule(() =>
+        {
+            this.FadeTo(0, duration, fadeOutEasing);
+            this.StartDelayedSchedule(() => panel.SetActive(false), fadeOutDuration);
+        }, timeUntilFadeOut);
+
+
     }
 
     public void FadeInOutScreen(float fadeDuration, float delayUntilFadeOut, Color color)

@@ -8,16 +8,13 @@ public class ForestStoneItem : Item
     [SerializeField]
     private float velocity = 5;
 
-    [SerializeField]
-    private AudioClip dropStone;
-
     protected override void OnItemDropped(RaycastHit snapPoint)
     {
         Collider.isTrigger = false;
         rigidbody.isKinematic = false;
         transform.position = Player.Current.transform.position + new Vector3(0, 0, -1);
 
-        ProxyMonoBehavior.Current.Play(dropStone);
+        ProxyMonoBehavior.Current.Play(Snap);
 
         var direction = (snapPoint.transform.position - Player.Current.transform.position).normalized;
 

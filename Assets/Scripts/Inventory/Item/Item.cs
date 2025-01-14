@@ -23,6 +23,9 @@ public class Item : MonoBehaviour, IHasColor
     [SerializeField]
     private SpriteRenderer sprite;
 
+    [SerializeField]
+    protected AudioClip Snap;
+
     public ItemInfo Info;
 
     private bool dragging;
@@ -54,5 +57,8 @@ public class Item : MonoBehaviour, IHasColor
         Destroy(snapPoint.collider.gameObject, 1);
         this.MoveTo(snapPoint.collider.transform.position, 1f, Easing.OutQuint);
         this.StartDelayedSchedule(() => Collider.isTrigger = false, 1);
+
+        if (Snap != null)
+            ProxyMonoBehavior.Current.Play(Snap);
     }
 }
