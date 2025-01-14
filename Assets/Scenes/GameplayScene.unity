@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -730,8 +731,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2125234040}
   m_HandleRect: {fileID: 2125234039}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1086,7 +1087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &394429310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4859,7 +4860,7 @@ MonoBehaviour:
   panel: {fileID: 394429309}
   fadeInDuration: 1
   fadeOutDuration: 1
-  timeUntilFadeOut: 20
+  timeUntilFadeOut: 3
   showFadeIn: 1
   showFadeOut: 1
   fadeInEasing: 1

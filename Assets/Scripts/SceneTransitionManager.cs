@@ -57,6 +57,7 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>, IHasCol
         if (!showFadeOut)
             return;
 
+        panel.SetActive(true);
         this.StartDelayedSchedule(() => fadeOut(fadeOutDuration, fadeColor), timeUntilFadeOut);
     }
 
@@ -85,7 +86,7 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>, IHasCol
         Color = color;
         panel.SetActive(true);
 
-        this.FadeTo(0, duration, fadeOutEasing);
+        this.FadeToFromOne(0, duration, fadeOutEasing);
         this.StartDelayedSchedule(() => panel.SetActive(false), fadeOutDuration);
     }
 
