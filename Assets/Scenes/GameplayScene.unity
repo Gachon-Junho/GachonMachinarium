@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -731,8 +730,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2125234040}
   m_HandleRect: {fileID: 2125234039}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999998
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4082,7 +4081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: dbf7f2b52a26b4059a5793172e56a899, type: 2}
   spawnPositionY: -0.9
-  broke: {fileID: 0}
+  broke: {fileID: 8300000, guid: 13f69d72e4fdcb544b7320041f064fb9, type: 3}
 --- !u!1 &1640166334
 GameObject:
   m_ObjectHideFlags: 0
@@ -4374,7 +4373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 1664328398}
   countUntilDrop: 2
-  fall: {fileID: 0}
+  fall: {fileID: 8300000, guid: a54328b5e0861624abe91545c6e59219, type: 3}
 --- !u!1 &1706546868
 GameObject:
   m_ObjectHideFlags: 0
@@ -4852,7 +4851,7 @@ MonoBehaviour:
   panel: {fileID: 394429309}
   fadeInDuration: 1
   fadeOutDuration: 1
-  timeUntilFadeOut: 20
+  timeUntilFadeOut: 7
   showFadeIn: 1
   showFadeOut: 1
   fadeInEasing: 1
