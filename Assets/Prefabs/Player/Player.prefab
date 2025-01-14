@@ -62,7 +62,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5366716896209815604}
-  - component: {fileID: 306950135823942463}
   - component: {fileID: 2894877068005452674}
   - component: {fileID: 1890753122243213105}
   m_Layer: 0
@@ -81,7 +80,7 @@ Transform:
   m_GameObject: {fileID: 4661387583241899548}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.18, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 0.008333333}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -89,27 +88,6 @@ Transform:
   - {fileID: 7508274007867318060}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &306950135823942463
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4661387583241899548}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 0.25, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2894877068005452674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +144,7 @@ GameObject:
   - component: {fileID: 5621503389028901516}
   - component: {fileID: 3033130284623107872}
   - component: {fileID: 2746582061583756056}
-  - component: {fileID: 5593079695505055155}
+  - component: {fileID: 8935811105327064403}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Player
@@ -230,7 +208,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: be8789150d697466f81aa89e223315b6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a346a8dcc5b3344499826c2b56635fcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -262,7 +240,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &5593079695505055155
+--- !u!65 &8935811105327064403
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,5 +259,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 10.4, z: 0.19999999}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3, y: 10, z: 0.2}
+  m_Center: {x: 0.2, y: -1.73, z: 0}

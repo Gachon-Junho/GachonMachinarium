@@ -1353,10 +1353,10 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 5.36, y: 13.42}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &455699312
@@ -1490,10 +1490,10 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 5.36, y: 13.42}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!54 &456861830
@@ -3554,10 +3554,10 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 5.36, y: 13.42}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1335881824
@@ -5344,6 +5344,22 @@ PrefabInstance:
       propertyPath: pickitem
       value: 
       objectReference: {fileID: 8300000, guid: 3f6f527cf5a1a704d954fd85e003d207, type: 3}
+    - target: {fileID: 3033130284623107872, guid: 5fa00412b85240e40be4bdd33cfbc490, type: 3}
+      propertyPath: m_Size.x
+      value: 4.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033130284623107872, guid: 5fa00412b85240e40be4bdd33cfbc490, type: 3}
+      propertyPath: m_Size.y
+      value: 13.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033130284623107872, guid: 5fa00412b85240e40be4bdd33cfbc490, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a346a8dcc5b3344499826c2b56635fcb, type: 3}
+    - target: {fileID: 3033130284623107872, guid: 5fa00412b85240e40be4bdd33cfbc490, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4148760680380707752, guid: 5fa00412b85240e40be4bdd33cfbc490, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -5411,6 +5427,18 @@ PrefabInstance:
     - target: {fileID: 5366716896209815604, guid: 5fa00412b85240e40be4bdd33cfbc490, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593079695505055155, guid: 5fa00412b85240e40be4bdd33cfbc490, type: 3}
+      propertyPath: m_Center.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593079695505055155, guid: 5fa00412b85240e40be4bdd33cfbc490, type: 3}
+      propertyPath: m_Center.y
+      value: -1.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 5621503389028901516, guid: 5fa00412b85240e40be4bdd33cfbc490, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 6626472709194447970, guid: 5fa00412b85240e40be4bdd33cfbc490, type: 3}
       propertyPath: m_Layer
