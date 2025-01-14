@@ -61,7 +61,9 @@ public class Player : Singleton<Player>
     {
         // 폰 전환 중에는 이동 차단
         if (formChanging)
+        {
             return;
+        }
 
         requestedPosition = x;
 
@@ -83,7 +85,7 @@ public class Player : Singleton<Player>
 
     public void OnItemClicked(Item item)
     {
-        if (!inBoundary.Exists(i => ReferenceEquals(item, i)))
+        if (!CheckItemInBoundary(item))
             return;
 
         var result = Inventory.Current.Add(item.Info);
@@ -99,9 +101,18 @@ public class Player : Singleton<Player>
         ProxyMonoBehavior.Current.Play(pickitem);
     }
 
+    public bool CheckItemInBoundary(Item item) => inBoundary.Exists(i => ReferenceEquals(item, i));
+
     public void SwitchForm()
     {
+        if (requestedPosition.HasValue)
+            return;
+
+        requestedPosition = null;
+
+        animator.SetBool(is_walking, false);
         animator.SetBool(expanded, !animator.GetBool(expanded));
+
         formChanging = true;
 
         // 애니메이션 전환 완료까지 대기
