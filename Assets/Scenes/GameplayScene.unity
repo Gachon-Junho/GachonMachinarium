@@ -1086,7 +1086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &394429310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4081,6 +4081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: dbf7f2b52a26b4059a5793172e56a899, type: 2}
   spawnPositionY: -0.9
+  broke: {fileID: 8300000, guid: 13f69d72e4fdcb544b7320041f064fb9, type: 3}
 --- !u!1 &1640166334
 GameObject:
   m_ObjectHideFlags: 0
@@ -4380,6 +4381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 1664328398}
   countUntilDrop: 2
+  fall: {fileID: 8300000, guid: a54328b5e0861624abe91545c6e59219, type: 3}
 --- !u!1 &1706546868
 GameObject:
   m_ObjectHideFlags: 0
