@@ -54,6 +54,7 @@ public class Item : MonoBehaviour, IHasColor
 
     protected virtual void OnItemDropped(RaycastHit snapPoint)
     {
+        snapPoint.collider.GetComponent<ItemSnapPoint>().OnItemSnapped(this);
         Destroy(snapPoint.collider.gameObject, 1);
         this.MoveTo(snapPoint.collider.transform.position, 1f, Easing.OutQuint);
         this.StartDelayedSchedule(() => Collider.isTrigger = false, 1);

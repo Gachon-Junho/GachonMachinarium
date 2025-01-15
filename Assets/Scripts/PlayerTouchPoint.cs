@@ -8,7 +8,7 @@ public class PlayerTouchPoint : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
-
+        OnPlayerEntered();
     }
 
     protected virtual void OnPlayerEntered()

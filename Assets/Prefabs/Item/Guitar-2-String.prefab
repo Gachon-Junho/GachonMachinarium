@@ -153,4 +153,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Collider: {fileID: 5035672159834974295}
   sprite: {fileID: 8381144565843773544}
-  Info: {fileID: 11400000, guid: 1cd78f68f96b24ab19d4f337f8cb7b53, type: 2}
+  Snap: {fileID: 0}
+  Info: {fileID: 11400000, guid: 7da9d435e32694f6d90fa523d5009257, type: 2}

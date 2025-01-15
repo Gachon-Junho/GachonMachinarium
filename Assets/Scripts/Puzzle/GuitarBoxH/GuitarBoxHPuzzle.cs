@@ -28,6 +28,12 @@ public class GuitarBoxHPuzzle : Puzzle, IPointerClickHandler
     [SerializeField]
     private AudioClip puzzleClick;
 
+    [SerializeField]
+    private ItemInfo removeItem;
+
+    [SerializeField]
+    private ItemInfo rewardItem;
+
     private ClickInfo[] info;
     private int chance;
 
@@ -152,6 +158,9 @@ public class GuitarBoxHPuzzle : Puzzle, IPointerClickHandler
         }, 1);
         // TODO: 성공시 아이템 지급?
 
+        Inventory.Current.Remove(removeItem);
+        Inventory.Current.Add(rewardItem);
+        Guitar.Completed = true;
     }
 
     public void OnPointerClick(PointerEventData eventData)

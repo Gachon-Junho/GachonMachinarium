@@ -72,15 +72,34 @@ public class Inventory : Singleton<Inventory>, IPointerEnterHandler, IPointerExi
         return newView;
     }
 
-    public void Remove(ItemView item)
+    public bool Remove(ItemView item)
     {
         var target = items.FirstOrDefault(i => ReferenceEquals(item, i));
 
         if (target == null)
-            return;
+            return false;
 
         items.Remove(item);
         Destroy(item.gameObject);
+
+        return true;
+    }
+
+    public bool Remove(ItemInfo item)
+    {
+        var target = items.FirstOrDefault(i => item == i.ItemInfo);
+
+        if (target == null)
+            return false;
+
+        return Remove(target);
+    }
+
+    public bool Exists(ItemInfo item)
+    {
+        var target = items.FirstOrDefault(i => item == i.ItemInfo);
+
+        return target != null;
     }
 
     public bool MergeItem(ItemView from, ItemView to)

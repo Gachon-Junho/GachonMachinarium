@@ -9,6 +9,9 @@ public class CityPuzzle : Puzzle
     [SerializeField]
     private KeyPiece[] keyPieces;
 
+    [SerializeField]
+    private ItemInfo rewardItem;
+
     public override void Initialize()
     {
         snapPoints.ForEach(s => s.Initialize(this));
@@ -49,6 +52,8 @@ public class CityPuzzle : Puzzle
             gameObject.SetActive(false);
             PuzzlePanel.SetActive(false);
         }, 1);
+
+        Inventory.Current.Add(rewardItem);
     }
 
     protected override void OnFailed()

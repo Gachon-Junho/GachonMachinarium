@@ -6,6 +6,5 @@ public class ItemSnapPoint : MonoBehaviour
 
     public virtual void OnItemSnapped(Item item)
     {
-        Destroy(gameObject);
     }
 }
