@@ -5,8 +5,15 @@ public abstract class InteractionableCharacter : InteractionableObject, IHasColo
     public Color Color
     {
         get => dialogRenderer.color;
-        set => dialogRenderer.color = value;
+        set
+        {
+            dialogRenderer.color = value;
+            DialogElements.ForEach(s => s.color = value);
+        }
     }
+
+    [SerializeField]
+    private GameObject dialogContainer;
 
     [SerializeField]
     private SpriteRenderer dialogRenderer;
@@ -16,6 +23,10 @@ public abstract class InteractionableCharacter : InteractionableObject, IHasColo
 
     [SerializeField]
     private Sprite[] dialogs;
+
+    protected SpriteRenderer[] DialogElements => dialogElements ??= dialogContainer.GetComponentsInChildren<SpriteRenderer>();
+
+    private SpriteRenderer[] dialogElements;
 
     private bool isInteracting => dialogs.Length > dialogIndex;
     private int dialogIndex;

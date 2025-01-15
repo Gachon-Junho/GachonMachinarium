@@ -55,14 +55,12 @@ public class PlayerControlReceptor : MonoBehaviour, IPointerDownHandler, IPointe
         if (player.collider != null)
         {
             Player.Current.SwitchForm();
-            return;
         }
 
         // 아이템 클릭
         if (item.collider != null)
         {
             Player.Current.OnItemClicked(item.collider.GetComponentInParent<Item>());
-            return;
         }
     }
 
