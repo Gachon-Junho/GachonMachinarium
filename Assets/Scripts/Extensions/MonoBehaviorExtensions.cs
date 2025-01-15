@@ -337,4 +337,25 @@ public static class MonoBehaviorExtensions
 
         return cor;
     }
+
+    public static Coroutine VolumeTo<T>(this T mono, float volume, double duration = 0, Easing easing = Easing.None)
+        where T : MonoBehaviour, IHasAudio
+    {
+        var cor = mono.StartCoroutine(transformLoop(volume, Time.time, Time.time + duration));
+
+        IEnumerator transformLoop(float to, double startTime, double endTime)
+        {
+            float start = mono.AudioSource.volume;
+
+            while (Time.time < endTime)
+            {
+                mono.AudioSource.volume =
+                    Interpolation.ValueAt(Time.time, start, to, startTime, endTime, new EasingFunction(easing));
+
+                yield return null;
+            }
+        }
+
+        return cor;
+    }
 }
