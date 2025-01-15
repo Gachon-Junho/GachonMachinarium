@@ -732,7 +732,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2125234039}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4129,7 +4129,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640166334}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: ff9d6a2a9be4b4068a6a80fec8feeff5, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 0e176cd03f047d148a7f6386fbf0c7f0, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -4143,12 +4143,14 @@ VideoPlayer:
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
-  m_TargetAudioSources: []
-  m_DirectAudioVolumes: []
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
   m_Url: https://youtu.be/Xf72dSS0-gY?si=-xCW4wfN_IUJrUab
-  m_EnabledAudioTracks: 
-  m_DirectAudioMutes: 
-  m_ControlledAudioTrackCount: 0
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 0
@@ -4852,12 +4854,12 @@ MonoBehaviour:
   panel: {fileID: 394429309}
   fadeInDuration: 1
   fadeOutDuration: 1
-  timeUntilFadeOut: 7
+  timeUntilFadeOut: 30
   showFadeIn: 1
   showFadeOut: 1
   fadeInEasing: 1
   fadeOutEasing: 1
-  fadeColor: {r: 1, g: 1, b: 1, a: 1}
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &1868661995
 Transform:
   m_ObjectHideFlags: 0
