@@ -33,6 +33,9 @@ public abstract class InteractionableCharacter : InteractionableObject, IHasColo
 
     protected override void StartInteraction()
     {
+        if (dialogs.Length == 0)
+            return;
+        
         if (dialogIndex >= dialogs.Length)
         {
             StopAllCoroutines();
