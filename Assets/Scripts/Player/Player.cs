@@ -40,7 +40,7 @@ public class Player : Singleton<Player>
         if (!requestedPosition.HasValue || formChanging)
             return;
 
-        if (!Precision.AlmostEquals(-requestedPosition.Value, transform.position.x))
+        if (!Precision.AlmostEquals(-requestedPosition.Value, transform.position.x, Time.deltaTime))
         {
             if (!animator.GetBool(is_walking))
                 animator.SetBool(is_walking, true);
