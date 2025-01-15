@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -68,6 +69,18 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>, IHasCol
 
         fadeIn(fadeInDuration, fadeColor);
         this.StartDelayedSchedule(() => this.LoadSceneAsync(sceneName), fadeInDuration);
+    }
+
+    public void FadeIn(float duration, Action after = null)
+    {
+        var prepare = fadeColor;
+        prepare.a = 0;
+
+        Color = prepare;
+        panel.SetActive(true);
+
+        this.FadeTo(1, duration, fadeInEasing);
+        this.StartDelayedSchedule(() => after?.Invoke(), 1);
     }
 
     private void fadeIn(float duration, Color color)
