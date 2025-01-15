@@ -17,7 +17,7 @@ public class VideoController : MonoBehaviour, IHasColor
     [SerializeField]
     private RawImage image;
 
-    private bool played;
+    private static bool played;
 
     private void Start()
     {

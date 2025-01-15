@@ -35,7 +35,7 @@ public abstract class InteractionableCharacter : InteractionableObject, IHasColo
     {
         if (dialogs.Length == 0)
             return;
-        
+
         if (dialogIndex >= dialogs.Length)
         {
             StopAllCoroutines();
