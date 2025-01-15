@@ -3,7 +3,12 @@ guid: 3d44f681a35ad42daaa2f1f3f6083775
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Birdhouse
+    second: {fileID: 2100000, guid: 0fbfd30ce217f42cbbd4302ce4703b5d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
